@@ -1,0 +1,80 @@
+\subsection{Hands-on}
+\label{sec:freeenergy}
+\framecard{Hands on}
+
+% Set up
+\begin{frame}{Exercise 1}
+	\txb{120}{3}{12}{
+		\begin{block}{Disambiguation}
+			 \begin{itemize}
+			 	\item The rates of a \textit{\textbf{state variable}} $\square$ are either represented by $d\square$, $\delta\square$ or with a dot $\dot{\square}$. 
+			 	
+			 	\item \textit{\textbf{Effective stress states}} are noted with an apostrophe ($\square'$).
+			 	
+			 	\item Apices $^{el}$ and $^{ir}$ stand for \textit{\textbf{elastic}} and \textit{\textbf{irreversible}}.
+			 	
+			 	\item Pedex $\square_{vol}$ indicate volumetric component.
+			 \end{itemize}
+		\end{block}
+	}
+\end{frame}
+
+
+% Set up
+\begin{frame}{Exercise 1}
+	\txb{120}{3}{12}{
+		\begin{block}{ Drained isotropic compression test }
+			The following elasto-plastic model is chosen to represent soil behaviour at best:
+			\begin{itemize}
+			\item elastic behaviour ( isotropic linear incremental relationship):
+				$$dp' = K\cdot d\varepsilon_{vol}^{el}$$
+			with $K$ representing the bulk modulus (isotropic elastic stiffness) and $d\varepsilon_{vol}^{el}$ the elastic volumetric strain
+			\item the failure criterion :
+			$$	f(p',\varepsilon_{vol}^{ir}) = p'-d\cdot p'_c(\varepsilon_{vol}^{ir}) \cdot \alpha (\varepsilon_{vol}^{ir})
+			$$
+			 where $p'$ represents the effective pressure (idrostatic stress), $d$ is a generic parameter and $\varepsilon_{vol}^{ir}$ the irreversible volumetric strain.
+			\end{itemize}
+		\end{block}
+	}
+\end{frame}
+
+
+\begin{frame}{Exercise 1}
+	\txb{120}{3}{12}{
+		\begin{block}{Hardening and plastic flow}
+\begin{itemize}
+	\item $\alpha$ and $p'_c$ are the hardening variables, depending on the evolution of 
+	
+	$$
+	\alpha(\varepsilon_{vol}^{ir})=\alpha_0+\frac{\varepsilon_{vol}^{ir}}{a+\varepsilon_{vol}^{ir}}
+	$$
+	
+	$$
+	p'_c(\varepsilon_{vol}^{ir})=p'_{c0}\cdot \exp(\beta\cdot\varepsilon_{vol}^{ir})
+	$$
+	$p'_{c0}$ represents the critic pressure at the initial state. $\alpha_0$, $a$ and $\beta$ are two generic model's parameters. 
+	
+	\item the flow rule is associated:
+	$$ 
+	\dot{\varepsilon}^{ir}_{vol}=-\dot{\lambda}\frac{\partial f}{\partial p'}
+	$$
+	with $\lambda$ plastic multiplier.
+\end{itemize}
+		\end{block}
+}
+\end{frame}
+
+
+\begin{frame}{Exercise 1}
+	\txb{120}{3}{12}{
+		\begin{block}{Questions:}
+\begin{enumerate}
+\item Compute the gradient $$\frac{\partial f}{\partial p'}$$
+\item Compute the material derivative of the yield function $\dot{f}$ (use the chain rule!)
+\item Compute the hardening modulus $H$
+\item Compute the increment of plastic multiplier $\delta \lambda$ for a pure plastic step (i.e. starting from $f=0$)
+\item compute the value of $\delta p'$ as a function of the total volumetric strain increment $\delta p'$ 
+\end{enumerate}
+\end{block}
+}
+\end{frame}

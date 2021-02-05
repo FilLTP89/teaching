@@ -1,0 +1,152 @@
+\subsection{Stress tensor decomposition}
+\label{subsec:stress-decomposition}
+\framecard{Stress tensor decomposition}
+\begin{frame}{$\stress$ : principal directions}
+\only<2>{
+\txb{125}{0}{55}{
+\centering
+\begin{itemize}
+	\item Real symmetric stress tensor: $\stress=\stress[][T]\in\mathbb{R}^{(d+1)d/2}$\\$\to\exists$ orthonormal basis of eigenvectors $\phiv[k]$
+	\item Principal directions :\vspace{-2mm}
+	 \beqh[\stress\pxtp\phiv[k\pxtp]=\lambda_k^\dsigma\pxtp\phiv[k]\pxtp][es][<1-2>][XYZ]
+	$\to \tauvsigma=\zerov$ along principal directions!
+\end{itemize}
+}
+}
+\txb{55}{0}{13}{
+\igwf{decomposition-stress}{55mm}
+}
+\txb{65}{60}{13}{
+	Facet $\Sigma$ oriented along $\nv$\vspace{-2mm}
+ \beq{\stress\pxtp.\nv=\stressnn\nv\pxtp+\tauvsigma\pxtp}{stressdec}\vspace{-2mm}
+ Normal traction component:\vspace{-2mm} \beq{\pscl{\nv}{\stress.\nv}\pxtp=\stressnn\pxtp}{stressnn}\vspace{-2mm}
+ Tangential traction component (shearing)\vspace{-2mm} \beq{\tauvsigma\pxtp=\stress\pxtp-\stressnn\nv\pxtp}{tausigma}
+}
+\end{frame}
+
+\begin{frame}{$\stress$ Principal directions (2D)}
+
+\txb{55}{0}{13}{
+	\igwf{decomposition-stress-2D}{55mm}\\
+	\igwf{Mohr-circles1}{35mm}
+}
+\txb{65}{60}{13}{
+	Principal direction = Simple traction\vspace{-2mm}
+	\beq{\stress=\dsigma_{ee}\ebv\otimes\ebv,\quad\pscl{\ebv}{\nv}=\cos \alpha}{tracsimple}\vspace{-2mm}
+	Normal traction component:\vspace{-2mm} \beq{\stressnn=\frac{\dsigma_{ee}}{2}\pdp{1+\cos 2\alpha}}{stressnn-ts}\vspace{-2mm}
+	Tangential traction component (shearing)\vspace{-2mm} \beq{\norm{\tauvsigma}=\vert\pscl{\mv}{\stress.\nv}\vert=\vert\frac{\dsigma_{ee}}{2}\sin 2\alpha\vert}{tausigma1}
+	$\pdp{\stressnn,\norm{\tauvsigma}}$: 2D Mohr's circle
+}
+\only<2>{
+\txb{125}{0}{65}{
+	In 3D $\to$:
+	\beq{
+		\begin{split}
+\stress\pxtp\phiv[k\pxtp]=\lambda_k^\dsigma\pxtp\phiv[k]\pxtp\\
+\det\pdp{\stress-\lambda_k^\dsigma\ID}=0\to -(\lambda_k^\dsigma)^3+I_1\pdp{\stress}(\lambda_k^\dsigma)^2-I_2\pdp{\stress}\lambda_k^\dsigma+I_3\pdp{\stress}=0
+		\end{split}		
+	}{eigenstress}
+}
+}
+\end{frame}
+
+\begin{frame}{$\stress$ Invariants}
+
+\txb{55}{0}{10}{
+	\igwf{principal-stress}{20mm}\igwf{Mohr-circle3}{30mm}
+}
+\txb{70}{55}{11}{
+	\beq{\stressnn=\frac{\lambda^\dsigma_K+\lambda^\dsigma_L}{2}+\frac{\lambda^\dsigma_K-\lambda^\dsigma_L}{2}\cos2\alpha}{}
+	\beq{\norm{\tauvsigma}=\frac{\lambda^\dsigma_K-\lambda^\dsigma_L}{2}\vert\sin2\alpha\vert}{}
+}
+\only<2>{
+\txb{125}{2}{36}{
+	\beq{I_1\pdp{\stress}=Tr\pdp{\stress}=\ID:\stress=\sum_{i=1}^3\dsigma_{ii}=\sum_{k\in\pbp{I,II,III}}\lambda_k^\dsigma}{I1stress}\vspace{-4mm}
+	\beq{I_2\pdp{\stress}=\frac{Tr\pdp{\stress}^2-Tr\pdp{\stress[][2]}}{2}=\lambda_1^{\dsigma}\vspace{-1mm} \lambda^{\dsigma}_2+\lambda_2^{\dsigma}\lambda^{\dsigma}_3+\lambda_1^{\dsigma}\lambda^{\dsigma}_3}{I2stress}\vspace{-1mm}
+	\beq{I_3\pdp{\stress}=\frac{1}{3}Tr\pdp{\stress[][3]}=\det\pdp{\stress}}{I3stress}\vspace{-1mm}
+	\beq{I_n\pdp{\stress}=\frac{1}{n}Tr\pdp{\stress[][n]}=\det\pdp{\stress}}{Instress}
+	Les invariants ne dépendants pas de base choisie
+}
+}
+\end{frame}
+
+\begin{frame}{$\stress$ Mohr's circles}
+\only<1>{
+\txb{125}{2}{13}{
+	\begin{itemize}
+		\item $\nv=\sum_{i\in\pbp{I,II,III}} n_i \Phibv[i]$
+		\item $\norm{\nv}^2=\sum_{i\in\pbp{I,II,III}} n_i^2=1$
+		\item $\stress.\nv=\sum_{i\in\pbp{I,II,III}}\lambda^\dsigma_k n_k\Phibv[k]$
+		\item $\stressnn=\sum_{i\in\pbp{I,II,III}}\lambda^\dsigma_k n_k^2$
+		\item $\norm{\stress.\nv}^2=\stressnn^2+\norm{\tauvsigma}^2=\sum_{i\in\pbp{I,II,III}}(\lambda^\dsigma_k)^2 n_k^2$
+	\end{itemize}
+	\bsys[][
+	& n_I^2 =\frac{\norm{\tauvsigma}^2+\pdp{\stressnn-\lambda_{II}^\dsigma}\pdp{\stressnn-\lambda_{III}^\dsigma}}{\pdp{\lambda_I^\dsigma-\lambda_{II}^\dsigma}\pdp{\lambda_I^\dsigma-\lambda_{III}^\dsigma}} \\
+	&n_{II}^2 =\frac{\norm{\tauvsigma}^2+\pdp{\stressnn-\lambda_{I}^\dsigma}\pdp{\stressnn-\lambda_{III}^\dsigma}}{\pdp{\lambda_{II}^\dsigma-\lambda_{I}^\dsigma}\pdp{\lambda_{II}^\dsigma-\lambda_{III}^\dsigma}} \\
+	&n_{III}^2 =\frac{\norm{\tauvsigma}^2+\pdp{\stressnn-\lambda_{I}^\dsigma}\pdp{\stressnn-\lambda_{II}^\dsigma}}{\pdp{\lambda_{III}^\dsigma-\lambda_{II}^\dsigma}\pdp{\lambda_{III}^\dsigma-\lambda_{II}^\dsigma}} 
+	][normal-components]
+}
+}
+\only<2>{\bfc{\ighf{mohr-ex1}{62.5mm}}{Credits J-A. Goulet}{mohr-ex1}}
+\only<3>{\bfc{\ighf{mohr-ex2}{62.5mm}}{Credits J-A. Goulet}{mohr-ex2}}
+\only<4>{\bfc{\ighf{mohr-ex3}{62.5mm}}{Credits J-A. Goulet}{mohr-ex3}}
+\only<5>{\bfc{\ighf{mohr-ex4}{62.5mm}}{Credits J-A. Goulet}{mohr-ex4}}
+\only<6>{\bfc{\ighf{mohr-ex5}{62.5mm}}{Credits J-A. Goulet}{mohr-ex5}}
+\end{frame}
+
+\begin{frame}{$\stress$ decomposition}
+	\vspace{-5mm}
+	Every isotropic function $f\pdp{\stress}$ can be expressed as a symmetric function of principal stress components or its invariants. $\stress$ can be decomposed into two parts: $\stress=\dsigma_m\ID+\deviator$
+	\begin{enumerate}
+		\item Spherical or mean stress:
+		\beq{\dsigma_m=\frac{1}{3}\stress:\ID=\frac{1}{3}Tr(\stress)}{avgstress}
+		\item Deviatoric stress :
+		\beq{\deviator=\stress-\dsigma_m\ID}{devstress}
+	\end{enumerate}
+Invariants of $\deviator$:
+{\scriptsize
+\begin{itemize}
+	\item \vspace{-2mm}$J_1\pdp{\deviator}=Tr\pdp{\deviator} = 0$\vspace{-2mm}
+	\item $J_2\pdp{\deviator}=\frac{1}{2}Tr\pdp{\deviator[][2]}=I_2\pdp{\stress}-\frac{I_1\pdp{\stress}^2}{6} $
+	\item\vspace{-2mm} $J_3\pdp{\deviator}=\frac{1}{3}Tr\pdp{\deviator[][3]}=I_3\pdp{\stress}-2\frac{I_1\pdp{\stress}J_2\pdp{\deviator}}{3}+\frac{I_1^3\pdp{\stress}}{27}$
+\end{itemize}
+}
+\end{frame}
+
+
+\begin{frame}{$\stress$ decomposition}
+ 	Every isotropic function $f\pdp{\stress}$ can be expressed as a symmetric function of \stress principal components, or its invariants $I_1,J_2,J_3$, and of $\deviator$.
+    \bfc{\ighf{deviatoric-representation}{40mm} \ighf{deviatoric-representation-plane}{40mm}}{Adapted from Potts et Zdravkovic, 1999}{deviatoric-representation}
+\end{frame}
+
+\begin{frame}{Haigh-Westergaard coordinates}
+\only<1>{
+\begin{itemize}
+	\item Haigh-Westergaard decomposition:
+	\beq{\stress=\pdp{\Pt[z]:\stress}\Pt[z]+\pdp{\Pt[r]:\stress}\Pt[r]}{}
+	\item Projection on hydrostatic axis:
+	\beq{\begin{split}
+&\xi=\Pt[z]:\stress=\sqrt{3}\dsigma_m\\ &\Pt[z]=\frac{\ID}{\norm{\ID}}=\frac{\ID}{\sqrt{3}}=\sum_{k\in\pbp{I,II,III}}\nv[k]\otimes\frac{\nv[k]}{\sqrt{3}}
+		\end{split}}{xi-hw}
+\end{itemize}
+}
+\only<2>{
+\begin{itemize}
+	\item Projection onto deviatoric axis:
+	\beq{\Pt[r]:\stress=\norm{\deviator}=\sqrt{2J_2\pdp{\deviator}}=\rho\to\rho\Pt[r]=\deviator}{rho-hw}
+	\item Principal direction of the deviatoric stress:
+	{\scriptsize
+	\beq{\Pt[r]=\frac{1}{\rho}\sqrt{\frac{2}{3}}\sum_{k\in\pbp{I,II,III}}\pdp{\stress.\gv[k]}\otimes\gv[k]=\frac{1}{\rho}\deviator\quad \gv[k]\otimes\gv[k]=\sqrt{\frac{3}{2}}\pdp{\nv[k]\otimes\nv[k]-\frac{1}{3}\ID}
+%		\begin{split}
+%			\deviator\frac{\nv[k]}{\sqrt{3}}=\pdp{\lambda^{\dsigma}_k-\dsigma_m}\frac{\nv[k]}{\sqrt{3}} = \pdp{\lambda^{\dsigma}_k-\xi}\nv[k]\\
+%			\vct{g}{k}{}=\sqrt{\frac{3}{2}} \pdp{\nv[k]-\Pt[z]\nv[k]}=
+%		\end{split}
+	}{Pr} 
+}
+	\item Lode's angle:
+	{\scriptsize
+\beq{\pscl{\deviator\gv[I]}{\gv[I]}=\sqrt{\frac{2}{3}}\rho\cos\theta\to\theta = \frac{1}{3}arcsin\pdp{\frac{J_3\pdp{\deviator}}{2}\pdp{\frac{2}{J_2\pdp{\deviator}}}^{3/2}}}{LodeAngle}
+}
+\end{itemize}
+}
+\end{frame}

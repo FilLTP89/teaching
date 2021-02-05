@@ -1,0 +1,98 @@
+\subsection{Types de chargement}
+\label{subsec:types-chargement}
+\framecard{Types de chargement}
+%\begin{frame}{Compression et cisaillement}
+%\bfc{\ighf{chargement}{65mm}}{Chemins classiques de chargement}{chargement}
+%\end{frame}
+
+\begin{frame}{Chemins de chargement}
+\begin{itemize}
+\item Compression:
+\begin{enumerate}
+\item Compression isotrope \hyperlink{frame:comp-iso}{\beamerbutton{GOTO}}
+\item Compression odeométrique \hyperlink{frame:comp-oedo}{\beamerbutton{GOTO}}
+\end{enumerate}
+\item Cisaillement
+\begin{enumerate}
+	\item triaxial de révolution \hyperlink{frame:triax-revo}{\beamerbutton{GOTO}}
+	\item torsion cylindre plein \hyperlink{frame:tors-pleine}{\beamerbutton{GOTO}}
+	\item torsion cylindre creux  \hyperlink{frame:tors-hollow}{\beamerbutton{GOTO}} 
+	\item cisaillement simple
+	\item vrai triaxial
+\end{enumerate}
+\end{itemize}
+Questions supplémentaires:
+\begin{itemize}
+	\item Avec rotation des directions principales
+\item Sans rotation des directions principales
+\item Influence de la pression interstitielle (drainé, non-drainé)
+\item composantes contrôlées (imposées)/composantes mesurées
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\hypertarget{frame:comp-iso}{Compression isotrope}}
+\bfc{\ighf{compression-iso}{35mm}\ighf{example-iso}{40mm}{}}{\cite{Book_Bardet_1997_Experimental_soil_mechanics}}{example-oedo}
+$\depsil_V=3\depsil_1=Tr\pdp{\strain}$ déformation volumique
+\end{frame}
+
+\begin{frame}{\hypertarget{frame:comp-oedo}{Compression odeométrique}}
+\ighf{chemin-oedometrique}{35mm}\\
+\bfc{\ighf{example-oedo}{30mm}{}}{\cite{Book_Bardet_1997_Experimental_soil_mechanics}}{example-oedo}
+\end{frame}
+
+\begin{frame}{\hypertarget{frame:triax-revo}{Triaxial de révolution}}
+\only<1>{\ighf{example-triax-rev}{65mm}
+$$\rho=\sqrt{2J_2\pdp{\deviator}}=\sqrt{\frac{2}{3}}q$$}
+\only<2>{\ighf{options-triax-rev}{65mm}}
+\end{frame}
+
+\begin{frame}{\hypertarget{frame:tors-pleine}{Torsion cylindre plein}}
+\only<1>{
+	\bfc{\ighf{example-tors-pleine}{65mm}}{\cite{Shimizu_et_al_2009}}{example-tors-pleine}
+}
+\only<2>{
+\txb{60}{2}{13}{
+	\bfc{\ighf{example-tors-pleine}{32mm}}{\cite{Shimizu_et_al_2009}}{example-tors-pleine}
+}
+\txb{63}{60}{13}{
+	$\forall \pdp{\theta,z}\in]0,2\pi[\times]0,H[$:
+	$$\stress\pxtp=2kr\ibv[\theta]\pdp{\theta}\otimes_s\ibv[z]$$
+	$$Div_x\stress\pxtp=0$$
+	$$\stress\pdp{r=\frac{D}{2},\theta,z}.\ibv[r]\pdp{\theta}=0$$
+}
+\txb{125}{0}{55}{
+	$$\vct{F}{}{}\Big\vert_{z=H}=\int_{0}^{2\pi}\int_{0}^{\frac{D}{2}}\stress\pdp{r,\theta,z=H}.\ibv[z] r dr d\theta=0$$
+	$$\vct{M}{0}{}\Big\vert_{z=H}=\int_{0}^{2\pi}\int_{0}^{\frac{D}{2}}r\ibv[r]\wedge\stress\pdp{r,\theta,z=H}.\ibv[z] r dr d\theta=M_t \ibv[z]\to k=\frac{32 M_t}{\pi D^4}$$
+	$$\lambda_{I,II,III}^\dsigma=\pbp{-kr,0,kr}\to \tau_{max}=\frac{kD}{2}=\frac{16 M_t}{\pi D^3}$$
+}
+}
+\end{frame}
+
+
+\begin{frame}{\hypertarget{frame:tors-hollow}{Torsion cylindre creux}}
+\only<1>{
+\bfc{\ighf{example-tors-hollow}{65mm}}{\cite{Fukuda_2014}}{example-tors-hollow}
+}
+\only<2-3>{
+\txb{60}{2}{13}{
+	\bfc{\ighf{example-tors-hollow}{32mm}}{\cite{Fukuda_2014}}{example-tors-hollow}
+}
+\txb{63}{60}{13}{
+	$\forall \pdp{\theta,z}\in]0,2\pi[\times]0,H[, $\\
+	$p_e<0,p_i<0, \frac{D}{e}\ggg1$:
+	$$\stress\pxtp=2kr\ibv[\theta]\pdp{\theta}\otimes_s\ibv[z]+$$ $$+\frac{\pdp{p_i+p_e}\pdp{\frac{D}{2}-r}-p_e e}{e}\ibv[r]\pdp{\theta}\otimes\ibv[r]\pdp{\theta}$$
+	$$Div_x\stress\pxtp=0$$
+}
+\txb{125}{0}{55}{
+\only<2>{
+$$\stress\pdp{r=\frac{D}{2},\theta,z}.\ibv[r]\pdp{\theta}=p_e\ibv[r]$$
+$$\stress\pdp{r=\frac{D}{2}-e,\theta,z}.-\ibv[r]\pdp{\theta}=-p_i\ibv[r]$$
+}
+\only<3>{
+	$$\vct{F}{}{}\Big\vert_{z=H}=\int_{0}^{2\pi}\int_{\frac{D}{2}-e}^{\frac{D}{2}}\stress\pdp{r,\theta,z=H}.\ibv[z] r dr d\theta=0$$
+	$$\vct{M}{0}{}\Big\vert_{z=H}=\int_{0}^{2\pi}\int_{\frac{D}{2}-e}^{\frac{D}{2}}r\ibv[r]\wedge\stress\pdp{r,\theta,z=H}.\ibv[z] r dr d\theta=M_t \ibv[z]\to k\underset{D/e\ggg 1}{\approx}\frac{2 M_t}{\pi e D^3}$$
+	$$\lambda_{I,II,III}^\dsigma=\pbp{-kr,0,kr}\to \tau_{max}=\frac{kD}{2}=\frac{ M_t}{\pi e D^2}>\frac{16 M_t}{\pi D^3} \iff \frac{D}{e}\ggg 16$$
+}
+}
+}
+\end{frame}

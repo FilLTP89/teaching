@@ -1,0 +1,33 @@
+\subsection{Hands-on}
+\label{sec:free_energy}
+\framecard{Hands on}
+
+% Set up
+\begin{frame}{Exercise 1}
+	\txb{120}{3}{12}{
+		\begin{block}{Symmetry of Helmholtz free energy}
+			Considering the ideal case of a material sensitive to shearing only, in the $(\ione,\itwo)$ plane. Given the Helmholtz free energy $$ \psi (\Estrain)= \frac{2\mu}{\rho_0}\pdp{\pdp{\ione\otp\itwo} : \Estrain}^2$$
+			with $\mu,\rho_0$ being the shear modulus and reference density respectively and $\Estrain$ the Green-Lagrange tensor:
+			\begin{itemize}
+				\item Show that $\psi\pdp{\Estrain}$ has a non-symmetric tensor-derivative in the 2$^{nd}$-order tensor space 
+				\item Propose a symmetric $\psi$ which is identical to the above one if $\Estrain$ was symmetric and with symmetric tensor derivative
+				\item Write the associated elastic relationship $\Sstress=f\pdp{\Estrain}$
+			\end{itemize}
+		\end{block}
+	}
+\end{frame}
+
+
+% Set up
+\begin{frame}{Exercise 2}
+	\txb{120}{3}{12}{
+		\begin{block}{Constitutive relationship via internal connections}
+			An elastic linear material, homogeneous and isotropic, under isothermal conditions, is characterized by a quadratic Helmholtz free-energy $\psi\pdp{\Estrain}$ as a function of the two first invariants of the Green-Lagrange tensor $\Estrain$
+			\begin{itemize}
+				\item Show that $\psi\pdp{\Estrain}$ can only be written as: $\rho_0\psi\pdp{\Estrain}=\rho_0\psi_0+p_0Tr\pdp{\Estrain}+\frac{\lambda}{2}Tr\pdp{\Estrain}^2+\mu Tr\pdp{\Estrain[][2]}$
+				\item Compute the derivatives $\pard[Tr(\Estrain)][\Estrain]$ and $\pard[Tr\pdp{\Estrain[][2]}][\Estrain]$
+				\item Write $\Sstress=\pdp{p_0+\lambda Tr\pdp{\Estrain}}\ID+2\mu\Estrain$ 
+			\end{itemize}
+		\end{block}
+	}
+\end{frame}

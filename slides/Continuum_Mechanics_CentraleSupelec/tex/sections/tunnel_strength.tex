@@ -1,0 +1,96 @@
+\subsection{4.2 Tunnel strength}
+\label{sec:tunnel_strength}
+\framecard{4.2 Tunnel Strength}
+\begin{frame}{Set up}
+	\bfc{\igwf{configuration_tunnel_strength.eps}{85mm}}{Set up [Credits: G. Puel]}{}
+\end{frame}
+
+
+% Set up
+\begin{frame}{Set up}
+	\txb{120}{3}{12}{
+		\begin{block}{Stress description}
+			\begin{itemize}
+				\item $\xv=x\ix+y\iy+z\iz=r\ir+z\iz,\quad \quad \pdp{r,\theta,z}\in \Omega_t=\left]0,R\right[\times\left]0,2\pi\right[\times\left]0,L\right[$
+				\item $x=r\cos\theta=, y =r\sin\theta,\quad r=\sqrt{x^2+y^2}$
+				\item Initial stress $$\stress[0]=\sigma_h\ID+\pdp{\sigma_v-\sigma_h}\iy\otp\iy,\quad \sigma_v\le\sigma_h<0$$
+				\item $\vload=0,\av=0$
+			\end{itemize}
+		\end{block}
+	}
+\end{frame}
+
+
+% Compute divergence stress
+\begin{frame}{Part I: Initial Stress}
+	\txb{120}{3}{12}{
+{	\scriptsize
+			\begin{exampleblock}{Question 1: principal stresses $\sigma_{I}\ge\sigma_{II}\ge\sigma_{III}$?}
+				$$\sigma_{I}=\sigma_{II}=\sigma_{xx}=\sigma_{zz}=\sigma_h, \sigma_{III}=\sigma_v$$
+	\end{exampleblock}
+	\begin{exampleblock}{Question 2: $\nv$ that maximizes $\norm{\tauvsigma}$?}
+		\begin{itemize}
+			\item $\tauvsigma=\stress.\nv-\stressnn\nv=\sigma_h\nv+(\sigma_v-\sigma_h)n_y\iy-\pdp{\sigma_h+(\sigma_v-\sigma_h)n_y^2}\nv=(\sigma_v-\sigma_h)n_y\pdp{\iy-n_y\nv}$
+			\item $\norm{\tauvsigma}=\vert\sigma_v-\sigma_h\vert\cdot \vert n_y\vert\cdot\sqrt{1-n^2_y} \quad _{(n_y\in\left[0,1\right])}$
+			\item $\tau_{\text{max}}=\norm{\tauvsigma}\vert_{n_y=\pm\frac{\sqrt{2}}{2}}=\frac{\vert\sigma_v-\sigma_h\vert}{2}$ Mohr's circle with $\alpha=\text{arc}\cos n_y=\pm\frac{\pi}{4}$
+		\end{itemize}
+	\end{exampleblock}
+\begin{exampleblock}{Question 3: failure criteria?}
+	\begin{itemize}
+		\item Splitting: $\max_{\norm{\nv}=1}\stressnn= \sigma_I =\sigma_h\le0\le \sigma_R,\quad$ with $\sigma_R\ge 0$
+		\item Maximum shear (Tresca): $\max_{\norm{\nv}=1}\norm{\tauvsigma}=\frac{\vert\sigma_v-\sigma_h\vert}{2}\le \tau_R$
+	\end{itemize}
+\end{exampleblock}
+}
+	}
+\end{frame}
+
+% Compute divergence stress
+\begin{frame}{Part II: Auxiliary Problem}
+	\txb{120}{3}{12}{
+		\bfc{\igwf{tunnel_strength_1.eps}{85mm}}{Set up [Credits: G. Puel]}{}
+	}
+\end{frame}
+
+% Compute divergence stress
+\begin{frame}{Part II: Auxiliary Problem}
+	\txb{120}{3}{12}{
+		\begin{block}{Auxiliary problem $r>R$}
+			\begin{itemize}
+				\item $\uv\pdp{r,\theta}=\alpha\frac{R^2}{r}\ir\pthp, r>R$
+				\item $\fv[S]=-p_0\nv, r=R$
+				\item $\vload=0,\av=0$
+			\end{itemize}
+		\end{block}
+	\begin{exampleblock}{Question 4/5/6/7: verify auxiliary problem}
+	\begin{itemize}
+		\item[4] Strain tensor: $\strain=\gradtS{u}{x}=\pard[\uv][r]\otp\ir+\pard[\uv][\theta]\otp\frac{\ith}{r}=\alpha\pdp{\frac{R}{r}}^2\pdp{\ith\otp\ith-\ir\otp\ir}$
+		\item[5] Stress tensor (linear elastic homogenenous isotropic): $\stress=\lambda Tr\pdp{\strain}\ID+2\mu\strain=0+2\mu\alpha\pdp{\frac{R}{r}}^2\pdp{\ith\otp\ith-\ir\otp\ir}$
+		\item[6] {\scriptsize $div_x\pdp{\stress}=\pard[\stress][r].\ir+\pard[\stress][\theta].\frac{\ith}{r}+\pard[\stress][z].\iz=4\mu\alpha\frac{R^2}{r^3}\ir-4\mu\alpha\frac{R^2}{r^3}\ir+0=0$}
+		\item[7] $\stress.\nv\vert_{r=R}=-\stress\vert_{r=R}.\ir=2\mu\alpha\ir=\sload=-p_0\nv=p_0\ir\Rightarrow \alpha=\frac{p_0}{2\mu}$
+	\end{itemize}
+	\end{exampleblock}
+	}
+\end{frame}
+
+
+% Compute divergence stress
+\begin{frame}{Part III - Failure criteria (isotropic)}
+	\txb{120}{3}{12}{
+		\begin{block}{Isotropic stress state}
+			\begin{itemize}
+				\item $\sigma_v=\sigma_h=-\rho g H<0\quad\stress[0]=\sigma_v\ID$, $\stress[t]=\stress[0]+\stress$
+			\end{itemize}
+		\end{block}
+		\begin{exampleblock}{Question 8/9/10/11: failure criteria?}
+			\begin{itemize}
+				\item[8]
+				{\scriptsize $div_x\pdp{\stress[t]}=div_x\pdp{\stress[0]}+div_x\pdp{\stress}=0$\\ 
+				$\stress[t].\nv\vert_{r=R}=-\stress[t].\ir=-\sigma_v\ir+p_0\ir=0\to p_0=\sigma_v<0$}
+				\item[9] $\stress[t]=\sigma_v\ID+\sigma_v\pdp{\frac{R}{r}}^2\pdp{\ith\otp\ith-\ir\otp\ir}$ (diagonal) $\to \sigma_{I}=\sigma_v\pdp{1-\pdp{\frac{R}{r} }^2 };\sigma_{III}=\sigma_v\pdp{1+\pdp{\frac{R}{r} }^2 }, \tau_{\text{max}}=\frac{\sigma_I-\sigma_{III}}{2}=-\sigma_v\le\tau_c$
+				\item[10] In plane $(\ir,\ith)$, tangent to tunnel's cross section, fractures at $\alpha=\pm\frac{\pi}{4})$
+				\item[11] $\sigma_I<0=\sigma_R \quad \tau_{\text{max}}=-\sigma_v\le \tau_c\to H\le\frac{\tau_c}{\rho g}$\\$\uv[t]=\uv[0]+\uv=0+\frac{\rho g H}{2\mu}\frac{R^2}{r}\ir\to u_{\text{max}}=\pscl{\uv[t]}{\iy}\vert_{r=R}=\frac{\rho g H R}{2\mu}\le\frac{\tau_c R}{2\mu}$
+			\end{itemize}
+		\end{exampleblock}
+	}
+\end{frame}

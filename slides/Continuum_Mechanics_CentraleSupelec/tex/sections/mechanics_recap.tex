@@ -1,0 +1,442 @@
+\subsection{Déformations}
+\label{sec:deformations}
+\framecard{Déformations}
+\begin{frame}{Description du mouvement}
+\only<1>{
+\bfc{\igwf{configuration_mapping}{110mm}}{Configurations}{}
+}
+\only<2-3>{
+	Vecteur position: cartographie des points matériels $\mathcal{M}$ dans repère Euclidien $\mathcal{E}$ muni d'un repère (observateur) $\mathcal{R}=\pdp{\ibv[1],\ibv[2],\ibv[3]}$
+	
+	\beq{\pv=\vct{p}{}{}\pdp{M} \in \Omega_0,\quad \pv=\sum_{n=1}^{3}p_k\ibv[k]}{position}
+	
+	\beq{\xv=\vct{f}{}{}\pptp \in \Omega_t,\quad\forall \pptp \in \pdp{\Omega_0,\mathbb{I}_t} }{xpu}
+}
+\only<2>{
+	\begin{enumerate}
+		\item Trajectoires: $\mathcal{T}\pdp{M}=\pbp{\xv, \exists t'\Big\vert\quad \xv=\vct{f}{}{}\pdp{\pv;t'}}$
+		\item Caractériser petites changement de trajectoires en temps
+		\item Caractériser petites changement de position en espace
+		\item La matière ne peut pas disparaître
+	\end{enumerate}
+}
+\only<3>{
+	\begin{enumerate}
+		\item \vct{f}{}{}: transformation injective (deux points matériels peuvent pas occuper le même volume) $ \vct{p}{1}{}\neq\vct{p}{2}{} \Rightarrow \vct{x}{1}{}\neq\vct{x}{2}{}$
+		\item Il existe sa transformation inverse $\vct{g}{}{}:\Omega_t\to\Omega_0$
+		\item $\vct{f}{}{}\in \mathcal{C}^1\pdp{\Omega_k,\Delta_T}$ (par morceaux en espace/temps)
+		\item Le trièdre reste droit (matière ne peut pas disparaître): $ \det\pdp{\vct{e}{1}{},\vct{e}{2}{},\vct{e}{3}{}}>0 \Leftrightarrow\det\pdp{\ibv[1],\ibv[2],\ibv[3]}>0,\quad \vct{e}{k}{}=\vct{f}{}{}\pdp{\vct{E}{k}{},t}$
+	\end{enumerate}
+}
+\end{frame}
+
+\begin{frame}{Déplacement et Gradient}
+\only<1>{
+\bfc{\igwf{configuration_gradient}{110mm}}{Tenseur gradient [Credits: G. Puel]}{}
+}
+\only<2>{
+\begin{itemize}
+	\item Vecteur déplacement:
+	\beq{\uv\pptp=\xv\pptp-\pv=\vct{f}{}{}\pptp-\pv}{}
+	\item Tenseur gradient de la transformation: \beq{\vct{dx}{}{}=\Fgrad.\vct{dp}{}{},\quad \vct{du}{}{}=\pdp{\Fgrad-\ID}\vct{dp}{}{}}{dxFdp} 
+\end{itemize}
+	\textit{Les vecteurs tangents des matériaux cartographient les vecteurs tangents spatiaux via le gradient de déformation.}	
+\beq{\Fgrad=\cartFgrad}{Fexp}
+\beq{\Fgrad=\curvFgrad}{Fcurv}\\ \hspace{-2mm}\vspace{5mm} coordonnées curvilignes $\xi_i$
+}
+\end{frame}
+
+\begin{frame}{Larges Déformations [Large Strains]}
+\only<1>{
+	\bfc{\igwf{configuration_green_lagrange}{77.5mm}}{Mesure de déformation [Credits: G. Puel]:\\ Allongement [top] - Distorsion angulaire [down]}{}
+}
+\only<2>{
+	\txb{125}{0}{9}{
+		\hspace{-2mm}
+\begin{itemize}
+	  \itemsep0em 
+	  
+	\item Tenseur des déformations de Green-Lagrange:\vspace{-3mm} \beq{\Estrain=\FEstrain=\UEstrain}{Estrain}\vspace{-3mm}
+		\item  Allongement de la fibre $dp\vct{e}{p}{}$:
+		\beq{\frac{\norm{\vct{dx}{}{}}^2-\norm{\vct{dp}{}{}}^2}{\norm{\vct{dp}{}{}}^2}=2\pscl{\vct{e}{p}{}}{\Estrain \vct{e}{p}{}} = 2 \mathbb{E}_{pp} }{dx2dp2} \vspace{-3mm}
+		\item Distorsion angulaire des fibres $dp_1\vct{e}{p1}{}$ $dp_2\vct{e}{p2}{}$:
+		\beq{ \sin\pdp{\gamma_{12x}} = \cos\pdp{\alpha_{12x}} = {\scriptscriptstyle  \frac{\pscl{\pdp{2\Estrain+\ID}\vct{e}{p1}{}}{\vct{e}{p2}{}}}{\sqrt{
+					\pscl{\pdp{2\Estrain+\ID}\vct{e}{p1}{}}{\vct{e}{p1}{}}
+				}\sqrt{
+					\pscl{\pdp{2\Estrain+\ID}\vct{e}{p2}{}}{\vct{e}{p2}{}}	
+		}}  } = \frac{2\mathbb{E}_{12}+1}{\sqrt{\pdp{2\mathbb{E}_{11}+1}\pdp{2\mathbb{E}_{22}+1}}} }{sinEstrain}
+	\end{itemize}
+}
+\txb{80}{0}{73}{\ighf{dx1dx2_dp1dp2}{20mm}{\ighf{angular-distorsion}{20mm}}
+}
+}
+\only<3>{
+\bfc{\ighf{example-green-lagrange}{65mm}}{Credits: G. Puel.}{example-green-lagrange}
+}
+\end{frame}
+
+\begin{frame}{Transformation de surface/volume }
+Formule de Nanson:
+\begin{itemize}
+	\item Variation locale de surface:
+	\beq{ds_t\nv=dS_0 det\pdp{\Fgrad}\FgradTinv\Nv}{dS}
+	\item Variation locale de volume:
+	\beq{dv_t = det\pdp{\Fgrad} dV_0}{dVolJ} (propriété 4 de \vct{f}{}{}: le trièdre doit rester droit! $J=det\pdp{\Fgrad}$)
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{Exercice $\sharp$1}
+%On considère dans la configuration initiale des points \pv, voisins d'un point \pv[0], répartis sur une sphère $\mathcal{S}\davsr{p}{0}{}{r}{0}{}$ de centre \pv[0] et de rayon $r_0$ petit :
+%\begin{itemize}
+%	\item Montrer que sous l'effet de la transformation $\xv=\fm\pptp$, la sphère $\mathcal{S}$ se transforme	en un ellipsoïde;
+%	\item Quelles sont les directions et longueurs des axes de l'ellipsoïde?
+%\end{itemize}
+%En coordonnées sphériques, les points sont repérés avec des angles $\phi,\theta$ dont l'origine est positionnée sur des axes portés respectivement par $\pdp{\ibv[1],\ibv[2],\ibv[3]}$ a priori arbitraires. \\
+%\hspace{60mm}\ighf{sphere_ex1}{30mm}
+%\vspace{10mm}
+%\end{frame}
+
+\begin{frame}{Petites Déformations [Small Strains]}
+\txb{110}{0}{11}{
+\begin{itemize}
+	\item Petits déplacements/Petites déformations:	\beq{\max_{\pxtp}\norm{\uv} << \mathcal{L} \pdp{\xv\approx\pv}, \quad \max_{\pxtp}\norm{\gradt{u}{p}}^2=Tr\pdp{\gradpUT\gradpU}<<1}{petitDepDef} 
+	\item Tenseur des petites déformations:
+	\beq{\Estrain\approx\strain=\frac{1}{2}\pdp{\gradt{u}{x}+\gradtT{u}{x}} =\cartEspilon}{smallStrain}
+	 $$\frac{\Delta l}{l_0} = \pscl{\vct{e}{}{}}{\depsil \vct{e}{}{}}=\depsil_{ee},\quad \frac{\Delta\gamma_{12}}{2}=\pscl{\vct{e}{1}{}}{\depsil \vct{e}{2}{}}=\depsil_{12}$$
+	 \item Variation locale de volume:
+	 \beq{\evol=\frac{\Delta V}{V_0}=\frac{l_{01}+\Delta l_1}{l_{01}}\frac{l_{02}+\Delta l_2}{l_{02}}\frac{l_{03}+\Delta l_{03}}{l_{03}} \approx Tr\pdp{\depsil}}{epsvol}
+\end{itemize}
+}
+\txb{15}{110}{11}{
+\igwf{small-displ}{15mm}
+}
+\end{frame}
+
+%\begin{frame}{Exercice $\sharp$2}
+%Soit un domaine $\Omega$ soumis à une grande rotation:
+%$$\xv\pptp=\xv[O]+\RotR\pdp{\pv-\pv[O]}$$
+%\begin{itemize}
+%	\item Montrer que $\Estrain$ est nul et que $\strain$ ne l'est pas ;
+%	\item Montrer que $\strain$ s'annule si la rotation est petite.
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Exercice $\sharp$3}
+%Tassement d'une couche de sol homogène $\Omega$ sous l'effet de la pesanteur. On considère donc une fraction parallélépipédique de ce dernier, prise selon les trois directions d'une base cartésienne $\pdp{\ibv[1],\ibv[2],\ibv[3]}$ où i 3 est vertical (vers le haut).\\
+%\ighf{couche-sol}{30mm}\\
+%En $x_3 = 0$: le sol est en contact avec un massif rocheux supposé fixe et indéformable; en $x_3 = H$ est libre d'efforts.
+%\begin{itemize}
+%	\item Proposer fonction déplacement \uv;
+%	\item Calculer tenseur petites déformations \strain;
+%	\item Calculer déformation volumique \evol
+%\end{itemize}
+%\vspace{30mm}
+%\end{frame}
+
+\subsection{Contraintes}
+\label{sec:contraintes}
+\framecard{Contraintes}
+\begin{frame}{Contrainte [Stress]}
+\txb{120}{5}{13}{
+\only<1>{
+Modélisation des efforts de $\Omega_t\setminus\Omega_t^*$ sur $\Omega_t^*$:
+\begin{itemize}
+	\item densité d'efforts locale efforts exercés de proche en proche
+	\item surface de coupure virtuelle $\partial \Omega_t^*$
+	\item influence de l'orientation locale de cette surface de normale \nv au plan tangent au point considéré \xv
+	\item Définition du vecteur contrainte [Traction vector]
+	\beq{\tv\pdp{\xv,t;\partial\Omega_t^*}=\fv[\partial\Omega_t^*]\pxtp\quad \forall\xv \in \partial\Omega_t^*,\forall \partial\Omega_t^*}{traction_def}
+\end{itemize}
+}
+\only<2>{
+	\begin{itemize}
+		\item Postulat de Cauchy: \beq{\tv\pdp{\xv,t;\partial\Omega_t^*} = \tv\pdp{\xv,t;\nv}, \forall\xv \in \partial\Omega_t^*}{postCauchy}
+		Pas d'influence de la courbure de la surface de coupure
+		\item Théorème de Cauchy: \beq{\tv\pdp{\xv,t;-\nv}+\tv\pdp{\xv,t;\nv}=\vct{0}{}{}, \forall\xv \in \partial\Omega_t^*}{theoCauchy1}
+		\beq{\tv\pdp{\xv,t;\nv}=\tv[n]\pxtp=\stress\pxtp.\nv, \forall\xv \in \partial\Omega_t^*}{theoCauchy2}
+	\end{itemize}
+}
+}
+\txb{50}{72}{63}{
+	\igwf{traction_definition}{50mm}
+}
+\txb{50}{2}{63}{
+	\only<1>{Conditions limite [Boundary conditions]: $$\tv\pdp{\xv,t;\partial\Omega_t}=\sload\pxtp$$}
+	\only<2>{\igwf{traction_decomposition}{50mm}}
+}
+\end{frame}
+
+\subsection{Lois de conservation}
+\label{sec:lois-conservation}
+\framecard{Lois de conservation}
+\begin{frame}{Lois de conservation [Conservation laws]}
+\txb{120}{0}{11}{
+\begin{itemize}
+	\item Transport theorem $\forall \Omega_t,\Sigma$:
+	\beq{\matd\int_{\Omega_t} \bv  dv_t
+		 = \int_{\Omega_t}\pdp{ \partdt[\bv]+div_x\pdp{\bv \otimes \vV  } }dv_t
+		 %+\int_{\Sigma\cap\Omega_t}\disc{ \vct{b}{}{}\otimes \pdp{\vct{v}{}{}-\vct{v}{\Sigma}{}}}.{\nvsigma}ds_t 
+}{theo_transp}
+%	\begin{center}
+%		\ighf{patate_disc}{25mm} $\disc{\alpha}=\alpha^\text{\circled{2}}-\alpha^\text{\circled{1}}$	
+%	\end{center}	
+\end{itemize}
+}
+\end{frame}
+%\txb{123}{2}{70}{
+%	Surface de discontinuité $\Sigma$ du champs $\bv$, se propageant à vitesse $\vv[\Sigma]$\vspace{-2mm}
+%	\begin{itemize}
+%		\itemsep0em
+%		\item $\partdt[\bv]$: variation en temps, à volume $\Omega_t$ figé
+%		\item $div_x\pdp{\bv\otimes\vv}$: mouvement point matériel + variation  volume $\Omega$ ($div_x\vv$)
+%		\item $\disc{\bv\otimes \pdp{\vv-\vv[\Sigma]}}.{\nvsigma}$ variation due au mouvement de $\Sigma$
+%	\end{itemize}
+%}
+
+%
+%\begin{frame}{Lois de conservation [Conservation laws]}
+%\begin{itemize}
+%	\item Variation locale de masse: \beq{\mathcal{M}=\int_{\Omega_t}\rho\pxtp  dv_t\to \matd[\mathcal{M}]=0,\forall \Omega_t}{mass}
+%	en appliquant l'\Cref{eq:theo_transp} avec $\vct{b}{}{}=\rho$:
+%	\beq{\matd[\rho]=\partdt[\rho]+\pscl{\gradv{\rho}{x}}{\vv}=0,\quad \pscl{\disc{\rho\pdp{\vv-\vv[\Sigma]}}}{\nv[\Sigma]}=0}{massbal1}
+%	\item Variation locale de densité de masse $\vert \Omega_t\vert\to 0$:		
+%	\beq{\rho \pdp{\fv\pptp,t} J\pptp = \rho_0\pdp{\pv}}{massbal2}
+%	\item Avec conservation de la masse l'\Cref{eq:theo_transp} devient:
+%	\beq{\hspace{-10mm}\matd\int_{\Omega_t} \rho\vct{b}{}{}  dv_t = \int_{\Omega_t}\rho \matd[\vct{b}{}{}] dv_t+\int_{\Sigma\cap\Omega_t}\disc{ \vct{b}{}{}} \otimes\rho\pdp{\vct{v}{}{}-\vct{v}{\Sigma}{}}.{\nvsigma}ds_t }{theo_transp1}
+%\end{itemize}
+%\end{frame}
+%
+%
+%\begin{frame}{Lois de conservation [Conservation laws]}
+%\txb{105}{20}{15}{
+%	\begin{itemize}
+%	\item Conservation de la quantité de mouvement: \beq{\sum_{k}^{N}\matd[\vct{q}{}{\text{\circled{k}}}]=\sum_{k}^{N}\vct{F}{}{\text{\circled{k}}},\quad \vct{q}{}{\text{\circled{k}}}=m^\text{\circled{k}}\vv[][\text{\circled{k}}]}{newton-particles}\vspace{2mm}
+%	Passage au limite:
+%	\beq{\hspace{-15mm}\matd\int_{\Omega_t}\rho\pxtp \vv\pxtp dv_t = \int_{\Omega_t} \vload\pxtp dv_t+\int_{\partial \Omega_t} \sload\pxtp ds_t}{newton-continuum}
+%	\hspace{-25mm}Application de l'\Cref{eq:theo_transp1} $\to$ loi de Newton (accélération $\av=\matd[\vv]$):\vspace{-5mm}
+%	\beq{\hspace{-40mm}
+%		\begin{split}			
+%			\int_{\Omega_t}\rho\pxtp \av\pxtp dv_t +\int_{\Sigma\cap\Omega_t}\disc{ \vct{v}{}{}} \otimes\rho\pdp{\vct{v}{}{}-\vct{v}{\Sigma}{}}.{\nvsigma}ds_t =\\ 	  \int_{\Omega_t} \vload\pxtp dv_t+\int_{\partial \Omega_t} \sload\pxtp ds_t
+%		\end{split}
+%		}{qbal}
+%	\end{itemize}
+%}
+%\txb{20}{0}{10}{\igwf{particle_q}{20mm} \\ \vspace{1mm}\igwf{patate_q}{20mm}}
+%
+%\end{frame}
+%
+%\begin{frame}{Lois de conservation [Conservation laws]}
+%\setlength{\leftmargin}{-2em}
+%\txb{120}{2}{15}{
+%	\begin{itemize}
+%		\item Conservation du moment cinétique: \beq{\sum_{k}^{N}\matd[\vct{s}{x_O}{\text{\circled{k}}}]=\sum_{k}^{N}\vct{M}{x_O}{\text{\circled{k}}},\quad \vct{s}{k}{}=\pdp{\xv[][\text{\circled{k}}]-\xv[O]}\wedge m^\text{\circled{k}}\vv[][\text{\circled{k}}]}{particle_s}\vspace{2mm}
+%		Passage au limite+\Cref{eq:theo_transp1}$\to$ Équations d'Euler:
+%		\beq{
+%			\begin{split}
+%			\int_{\Omega_t}\pdp{\xv-\xv[O]}\wedge\rho \av dv_t + \int_{\Sigma\cap\Omega_t}\pdp{\xv-\xv[O]}\wedge\disc{ \vct{v}{}{}} \otimes\rho\pdp{\vct{v}{}{}-\vct{v}{\Sigma}{}}.\nvsigma ds_t  =\\ \int_{\Omega_t}\pdp{\xv-\xv[O]}\wedge \vload\pxtp dv_t+\\ \int_{\partial \Omega_t} \pdp{\xv-\xv[O]}\wedge\sload\pxtp ds_t
+%				\end{split}
+%	}{sbal}
+%
+%	\end{itemize}
+%}
+%\txb{40}{0}{65}{\igwf{particle_s}{40mm} \\ \vspace{2mm}}
+%\end{frame}
+%
+%\begin{frame}{Équilibre local [Local balance]}
+%\setlength{\leftmargin}{-2em}
+%\txb{120}{2}{15}{
+%	\begin{itemize}
+%		\item $ \forall \pxtp \in\Omega_t\times\mathbb{I}_t$
+%		\item Théorème de Cauchy: $\tv[n]\pxtp=\stress\pxtp\nv\pxtp$
+%		\item Théorème de la divergence : $\int_{\Omega_t}div_x\vct{b}{}{}dv_t=\int_{\partial\Omega_t}\vct{b}{}{}\otimes\nv ds_t - \sum_{i<j}\int_{\Sigma_{ij}}\disc{\vct{b}{}{}}\otimes\nv[\Sigma_{ij}]ds_t$
+%		\item \Cref{eq:sbal}: passage au limite $\vert\Omega_t\vert\to 0$: \beq{\stress=\stress[][T]}{loc-bal1}
+%		\item \Cref{eq:qbal}: passage au limite $\vert\Omega_t\vert\to 0$ + théorème divergence:
+%		\beq{\rho\matd[\vv]=Div_x\stress+\vload}{loc-bal2}
+%		\beq{\disc{\stress}=\disc{\vv}\otimes\rho\pdp{\vv-\vv[\Sigma]}}{loc-bal3}
+%		
+%	\end{itemize}
+%}
+%\txb{40}{85}{10}{\igwf{discont}{40mm} }
+%\end{frame}
+%
+%%\begin{frame}{Exercice $\sharp$4}
+%%On considère un arbre de transmission $\Omega_t$, dont la géométrie est un cylindre creux de révolution, d'axe $\ibv[z]$ , de longueur $L$ et de rayon $a$ et d'épaisseur $e$. Les seules actions mécaniques exercées sont en $z = 0$ et $z = L$. On néglige les effets d'inertie et l'action de la pesanteur. On se propose de vérifier que le tenseur des contraintes suivant:
+%%$$\stress\pxtp=2 k r \ibv[\theta]\pdp{\theta}\otimes_s\ibv[z]$$
+%%\begin{itemize}
+%%	\item satisfait les équations d'équilibre local \ref{eq:loc-bal1}-\ref{eq:loc-bal3}
+%%	\item Détermine une résultante $\vct{R}{}{}=\vct{0}{}{}$ et un moment $\vct{M}{0}{}=\vct{T}{}{}$ (exprimé en un point à choisir), sur
+%%	la face extrême en $z = L$, en fonction de $k$ et de ce que l'on appelle l' \textit{inertie polaire de section} $I_z=\int_{S\pdp{z}} r^2 ds$	
+%%\end{itemize}
+%%\vspace{20mm}
+%%\txb{40}{85}{70}{
+%%	\igwf{arbre_torsion}{40mm}	
+%%}
+%%\end{frame}
+%%
+%%\begin{frame}{Exercice $\sharp$5}
+%%	On considère un volume de contrôle fixe $\Omega_v$ occupé, au temps $t_0$, par un milieu continu constitué d'un solide (occupant le domaine $\Omega_s\subset\Omega_v$, avec une interface imperméable $\partial\Omega_s\cap\partial \Omega_v=\emptyset$) immergé dans un fluide occupant le reste du domaine de contrôle $\Omega_f$ ($\Omega_v=\Omega_s\cup\Omega_f$). On suppose que:
+%%	\begin{itemize}
+%%		\item $\vv=\vv\uavr{x}{}{}\forall \xv \in \Omega_s$ et $\vv=\vct{0}{}{}\forall \xv \in \partial\Omega_s$
+%%		\item $\rho\vert_{\Omega_s}=\rho_s\uavr{x}{}{}$ et $\vload=\vct{0}{}{}$
+%%		
+%%	\end{itemize}
+%%Calculer les forces de contacte que le fluide exerce sur le solide en mesurant seulement des quantités définies sur $\partial\Omega_v$
+%%\vspace{8mm}
+%%	\txb{30}{90}{65}{
+%%	\igwf{exo4_solide_fluide}{30mm}	
+%%}
+%%\end{frame}
+%%
+%%\begin{frame}{Exercice $\sharp$6}
+%%\begin{itemize}
+%%	\item Est-ce que les équations de l'équilibre à elles seules sont suffisantes pour la détérmination du tenseur de contraintes dans un massif de sol homogène limité par une surface libre plane ?
+%%	\item On suppose la masse volumique du sol connue. Considérons un demi-espace homogène limité par un plan incliné à un angle $\beta$ par rapport à l'horizontale. Quelle est la forme du champs de contraintes. Quelle est le vecteur contrainte sur une facette parallèle à la surface libre à une profondeur de $h$.
+%%\end{itemize}
+%%\end{frame}
+%
+%
+%
+%%\vspace{1.5cm}
+%%\fbox{$Div_x \dsigma = -\rho \omega_n^2 \vct{u}{n}{},\quad \vct{x}{}{}\in \Omega$}\\
+%%\vspace{.5cm}
+%%No external force\\
+%%\fbox{$\vct{f}{v}{}\davsr{x}{}{}{t}{}{}=\vct{f}{s}{}\davsr{x}{}{}{t}{}{}=\vct{0}{}{}$}\\
+%%\fbox{$\dsigma.\vct{n}{}{}=0,\quad \vct{x}{}{}\in\Gamma_\sigma\subset\partial\Omega$}\\
+%%\vspace{.5cm}
+%%Homogeneous BC:\\
+%%\fbox{$\vct{u}{n}{}=\vct{0}{}{},\quad \vct{x}{}{}\in\Gamma_u\subset\partial\Omega$}\\
+%%\vspace{.5cm}
+%%\fbox{$\vct{u}{n}{}\davsr{x}{}{}{t}{}{}=\vct{\phi}{n}{}\uavr{x}{}{}e^{i\omega_n t}$}\\
+%%\vspace{.5cm}
+%%\fbox{$\omega_n=2\pi f_n$: natural frequency }
+%%%\fbox{$\depsil=\frac{1}{2}\pdp{\mathbb{D}_x\vct{u}{n}{}+\mathbb{D}^T_x\vct{u}{n}{}},\quad \boldsymbol{x}\in \Omega$}\\
+%%%\vspace{.5cm}
+%%\end{frame}
+%%
+%%
+%%\begin{frame}{}
+%%\fbox{$\omega_n=2\pi f_n$: natural frequency }\\
+%%\vspace{.5cm}
+%%\fbox{$\vct{u}{n}{}\davsr{x}{}{}{t}{}{}=\textcolor{blue}{\alpha_n\pdp{t}}\textcolor{red}{\vct{\phi}{n}{}\uavr{x}{}{}}$}\\
+%%\vspace{.5cm}
+%%\fbox{$\textcolor{red}{\vct{\phi}{n}{}\uavr{x}{}{}}\to$ mode shape\hspace{.6cm}} \\ \vspace{.2cm}depends on geometry/material/boundary conditions \vspace{.2cm}\\
+%%\fbox{$\textcolor{blue}{\alpha_n\pdp{t}}\to$ modal amplitude} \\ \vspace{.2cm}depends on external loads \vspace{.2cm}\\
+%%\vspace{.5cm}
+%%$$\vct{u}{}{}\pxtp=\sum_{n=0}^{+\infty}\vct{\phi}{n}{}\uavr{x}{}{}e^{i\omega_n t}$$\\
+%%\vspace{.5cm}
+%%$$\vct{u}{}{}\pxtp=\sum_{n=0}^{+\infty}\textcolor{blue}{\alpha_n\pdp{t}}\textcolor{red}{\vct{\phi}{n}{}\uavr{x}{}{}}+\vct{u}{r}{}\pxtp$$\\
+%%%\fbox{$\depsil=\frac{1}{2}\pdp{\mathbb{D}_x\vct{u}{n}{}+\mathbb{D}^T_x\vct{u}{n}{}},\quad \boldsymbol{x}\in \Omega$}\\
+%%%\vspace{.5cm}
+%%\end{frame}
+%%
+%%
+%\subsection{Approche Énergétique}
+%\label{subsec:approche-energetique}
+%\framecard{Approche Énergétique}
+%\begin{frame}{Principe des Puissances Virtuelles}
+%\txb{123}{2}{11}{
+%	\only<1>{En appliquant $\int_{\Omega_t} \cdot\wv \pxp dv_t$ aux \Cref{eq:loc-bal2} et (\ref{eq:loc-bal3}), on  obtient une autre manière d'exprimer équilibre local, sous forme intégrale:}
+%	\only<2->{
+%	${\scriptstyle  \rho\matd[\vv]=Div_x\stress+\vload,\quad 
+%	\disc{\stress}.\nv[\Sigma]=\disc{\vv}\otimes\rho\pdp{\vv-\vv[\Sigma]}}$}
+%	\begin{itemize}
+%		
+%		\item<2-> Puissance des efforts d'accélération: \beq{\PKin\pdp{\wv}=\int_{\Omega_t} \rho \pscl{\av}{\wv} dv_t+\int_{\Sigma\cap\Omega_t} \pscl{\wv}{\disc{\vv}\otimes \rho\pdp{\vv-\vv[\Sigma]}.\nvsigma } ds_t}{Pkin-def}
+%		%\beq{\matd[]\mathcal{E}_{e}\uavr{v}{}{}+\mathcal{E}_{kin}\uavr{v}{}{}=\mathcal{P}_{ext}\uavr{v}{}{}}{VPP}
+%		% \beq{2 \mathcal{E}_{i}\uavr{v}{}{}=\int_{\Omega_t}\stress\pxtp:\gradt{v}{x}\pxtp dv_t}{EnEl}
+%		 \item<3-> Puissance des efforts intérieurs:
+%		 \beq{\mathcal{P}_{i}\uavr{w}{}{}=-\int_{\Omega_t}\stress\pxtp:\gradt{w}{x}\pxp dv_t}{Pi}
+%		%\item Énergie cinétique [Kinematic Energy]:
+%		%\beq{2\mathcal{E}_{kin}\uavr{v}{}{}=\mathcal{M}\davvr{v}{}{}{v}{}{}=\int_{\Omega}\rho\langle \vct{v}{}{},\vct{v}{}{}\rangle dV}{EnKin}
+%		\item<4-> Puissance des efforts extérieures:
+%		\beq{\mathcal{P}_{ext}\pdp{\vv}=\int_{\Omega_t}\pscl{\vload}{\wv}dv_t+\int_{\partial\Omega_t}\pscl{\sload}{\wv}+\int_{\Sigma\cap\Omega_t} \pscl{\wv}{\disc{\stress} .\nvsigma } ds_t}{Pext}
+%		\item<5-> Principe de Puissances virtuelles (PPV) [Virtual Power Principle]:
+%		\beq{\PKin\pdp{\wv}=\PInt\pdp{\wv}+\PExt\pdp{\wv},\quad \forall \wv\pxp \text{vitesse virtuelle}{}}{VPP}
+%		
+%	\end{itemize}
+%}
+%\end{frame}
+%
+%\begin{frame}{Principes de la thermodynamique}
+%\txb{123}{2}{11}{
+%\begin{itemize}
+%\item<only@1> Premier principe (PPT):
+%\beq{\PKin+\matd[\UInt]=\PExt+\dot{Q}}{tdp1}
+%	\begin{itemize}
+%		\item Énergie interne totale \beq{\UInt=\int_{\Omega_t}\rho\pxtp u\pxtp dv_t}{uint-def}
+%		\item Taux de quantité de chaleur \beq{\dot{Q}=\int_{\Omega_t}r\pxtp dv_t-\int_{\partial \Omega_t}\qv.\nv ds_t}{Q-def}
+%	\end{itemize}
+% $r\pxtp$: débit de chaleur par source interne, $\qv\pxtp$: flux de chaleur à la frontière
+% \beq{\int_{\Omega_t}\rho\pdp{u+\frac{1}{2}\norm{\vv}^2} dv_t = \int_{\Omega_t}\pdp{r-div_x\qv }dv_t}{tdp1-1}
+%  \item<only@2>Second principe (Postulat de création de l'entropie, PCE):
+%  \beq{\dot{S}\geq\frac{\dot{Q}}{T}}{tdp2}
+%  \begin{itemize}
+%  	\item Entropie du système: \beq{S=\int_{\Omega_t}\rho\pxtp s\pxtp dv_t}{entropie}
+%  	\item Température absolue $T$
+%  \end{itemize}
+% \beq{\matd[]\int_{\Omega_t}\rho s dv_t\geq \int_{\Omega_t}\pdp{\frac{r}{T}-div_x{\frac{\qv}{T}} }dv_t}{tdp2-1}
+% Dans le cas quasi-statique:
+%  \beq{\matd[]\int_{\Omega_t}\rho s dv_t= \int_{\Omega_t}\pdp{\frac{r}{T}-div_x{\frac{\qv}{T}} }dv_t}{tdp2-2}
+%\end{itemize} 
+%}
+%\end{frame}
+%
+%%\begin{frame}{}
+%%Virtual Power Principle (VPP)\\
+%%\fbox{$\frac{d}{dt}\pdp{\mathcal{E}_{e}\uavr{v}{}{}+\mathcal{E}_{kin}\uavr{v}{}{}}=\mathcal{P}_{ext}\uavr{v}{}{}$}\\
+%%\vspace{.5cm}
+%%Free Elastic Energy\\
+%%\fbox{$2 \mathcal{E}_{e}\uavr{v}{}{}=\mathcal{K}_e\davvr{u}{}{}{v}{}{}=\int_{\Omega}\dsigma\uavb{u}{}{}:\depsil\uavb{v}{}{}dV$}\\
+%%\vspace{.5cm}
+%%Kinematic Energy\\
+%%\fbox{$ 2\mathcal{E}_{kin}\uavr{v}{}{}=\mathcal{M}\davvr{v}{}{}{v}{}{}=\int_{\Omega}\rho\langle \vct{v}{}{},\vct{v}{}{}\rangle dV$}\\
+%%\vspace{.5cm}
+%%External Power\\
+%%\fbox{$ \mathcal{P}_{ext}\uavr{v}{}{}=\int_{\Omega}\langle \vct{f}{v}{},\vct{v}{}{}\rangle dV+\int_{\Gamma_\sigma}\langle \vct{f}{s}{},\vct{v}{}{}\rangle dV$}
+%%\end{frame}
+%%
+%%\begin{frame}{}
+%%Space of Finite Energy velocity fields
+%%\fbox{$\mathbb{V}_0=\pbp{\vct{w}{}{}:\Omega\to\mathbb{R}^3,  \norm{\vct{w}{}{}}_{\mathbb{V}_0}^2=\mathcal{E}_e\uavr{w}{}{}+\mathcal{E}_{kin}\pdp{\omega_{ref}\vct{w}{}{}}<+\infty;\vct{w}{}{}\vert_{\Gamma_u}=\vct{0}{}{}}$}\\
+%%\vspace{.5cm}
+%%\underline{Step 1}: Find modal shapes $\vct{\phi}{n}{}$ and natural frequencies $\omega_n$:\\
+%%$$\mathcal{K}_e\davvr{\phi}{n}{}{w}{}{}=\omega_n^2\mathcal{M}\davvr{\phi}{n}{}{w}{}{},\quad \forall\vct{w}{}{}\in\mathbb{V}_0$$\\
+%%\vspace{-.5cm}
+%%$$0\leq \omega_0\leq ... \leq \omega_n\leq +\infty,\quad \lim_{n\to+\infty}\omega_n=+\infty $$\\
+%%Modes $\pbp{\vct{\phi}{n}{}\omega_n^{-1}}_{n\in\mathbb{N}}$ are countable Hilbert basis  of $\mathbb{V}_0$:\\
+%%\fbox{$\mathcal{M}\davvr{\phi}{n}{}{\phi}{n'}{}=m_n\delta_{nn'},\quad \mathcal{K}_e\davvr{\phi}{n}{}{\phi}{n'}{}=\omega_n^2m_n\delta_{nn'}$}\\
+%%
+%%\vspace{.5cm}
+%%$\mathcal{M}$ Diagonalization by $\vct{\phi}{n}{}$: Modal Masses\\
+%%\fbox{$0<m_n\leq c<+\infty$}
+%%
+%%\end{frame}
+%%
+%%\begin{frame}{}
+%%$$\vct{u}{}{}\pxtp=\sum_{n=0}^{+\infty}\textcolor{blue}{\alpha_n\pdp{t}}\textcolor{red}{\vct{\phi}{n}{}\uavr{x}{}{}}$$\\
+%%\vspace{.5cm}
+%%Modal amplitude\\
+%%\fbox{$\alpha_n\pdp{t}=\frac{1}{m_n}\mathcal{M}\davvr{u}{}{}{\phi}{n}{}$}\\
+%%\vspace{.5cm}
+%%Solution of SDOF system\\
+%%\fbox{$\omega_n^2\alpha_n\pdp{t}+\ddot{\alpha}_n\pdp{t}=f\pdp{t}$}\\
+%%\vspace{.1cm}
+%%Mode excitation\\
+%%\fbox{$f\pdp{t}=\mathcal{P}_{ext}\uavr{\phi}{n}{}/{m_n}$}\\
+%%\vspace{.1cm}
+%%Initial Conditions\\
+%%$\alpha_n\pdp{0}=\frac{1}{m_n}\mathcal{M}\pdp{\vct{u}{}{}\pdp{\vct{x}{}{};0},\vct{\phi}{n}{}}$\\
+%%\vspace{.1cm}
+%%$\dot{\alpha}_n\pdp{0}=\frac{1}{m_n}\mathcal{M}\pdp{\vct{v}{}{}\pdp{\vct{x}{}{};0},\vct{\phi}{n}{}}$
+%%
+%%\end{frame}
+%%
+%%
+%%\begin{frame}{}
+%%For semi-discretized systems (MDOF systems)\\
+%%\fbox{$\pdp{\mathbb{M}^{-1}\mathbb{K}-\omega_n^2\mathbb{I}}\vct{U}{n}{}=\vct{0}{}{}$}\\
+%%\vspace{1cm}
+%%The most general oscillation is a superposition of its normal modes
+%%\vspace{1cm}
+%%\underline{Step 2}: Find $\alpha_n\pdp{t}$ by projecting VPP on mode $\vct{w}{}{}=\vct{\phi}{n}{}\in\mathbb{V}_0$\\
+%%\end{frame}

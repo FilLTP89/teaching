@@ -1,0 +1,33 @@
+\subsection{Stress}
+\label{sec:contraintes}
+\framecard{Stress}
+\begin{frame}{Stress}
+\txb{120}{5}{13}{
+\only<1>{
+Modelling contact forces exerted by $\Omega_t\setminus\Omega_t^*$ on $\Omega_t^*$:
+\begin{itemize}
+	\item local contact force density exerted by proximal subdomains
+	\item virtual cutting surface $\partial \Omega_t^*$
+	\item influence of local surface orientation : normal vector \nv defining the tangent plane at \xv
+	\item Traction vector definition
+	\beq{\tv\pdp{\xv,t;\partial\Omega_t^*}=\fv[\partial\Omega_t^*]\pxtp\quad \forall\xv \in \partial\Omega_t^*,\forall \partial\Omega_t^*}{traction_def}
+\end{itemize}
+}
+\only<2>{
+	\begin{itemize}
+		\item Cauchy's postulate: \beq{\tv\pdp{\xv,t;\partial\Omega_t^*} = \tv\pdp{\xv,t;\nv}, \forall\xv \in \partial\Omega_t^*}{postCauchy}
+		Surface curvature has no influence on the traction vector!
+		\item Cauchy's theorem: \beq{\tv\pdp{\xv,t;-\nv}+\tv\pdp{\xv,t;\nv}=\vct{0}{}{}, \forall\xv \in \partial\Omega_t^*}{theoCauchy1}
+		\beq{\tv\pdp{\xv,t;\nv}=\tv[n]\pxtp=\stress\pxtp.\nv, \forall\xv \in \partial\Omega_t^*}{theoCauchy2}
+	\end{itemize}
+}
+}
+\txb{50}{72}{63}{
+	\igwf{traction_definition}{50mm}
+}
+\txb{50}{2}{63}{
+	\only<1>{Boundary conditions: $$\tv\pdp{\xv,t;\partial\Omega_t}=\sload\pxtp$$}
+	\only<2>{\igwf{traction_decomposition}{50mm}}
+}
+\end{frame}
+

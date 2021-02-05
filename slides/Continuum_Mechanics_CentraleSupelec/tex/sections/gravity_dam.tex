@@ -1,0 +1,91 @@
+\subsection{3.1 Gravity Dam}
+\label{sec:gravity_dam}
+\framecard{3.1 Gravity Dam}
+\begin{frame}{Set up}
+	\bfc{\igwf{configuration_gravity_dam.eps}{110mm}}{Set up [Credits: G. Puel]}{}
+\end{frame}
+
+
+% Set up
+\begin{frame}{Set up}
+	\txb{120}{3}{12}{
+		\begin{block}{Stress description}
+			\begin{itemize}
+				\item $\xv=x_1\ione+x_2\itwo+x_3\ithree,\quad \quad \pdp{x_1,x_2,x_3}\in \Omega_t=\left]0,x_2\alpha\right[\times\left]0,H\right[\times\left]0,L\right[$
+				\item $\stress\pxp=b_1 x_2 \ione\otp\ione + (a_2 x_1+b_2 x_2)\itwo\otp\itwo -2\pdp{\rho_bg+b_2}x_1\ione\sotp\itwo, \forall\xv\in\Omega_t$
+				\item $\rho_e$=1000 kg/m$^3$, $\rho_b$=2200 kg/m$^3$, $g$=9.81 m/s$^2$
+				\item $b_1=-\rho_e g, \quad a_2=\frac{\rho_b g}{\alpha}-\frac{2\rho_e g}{\alpha^3}, \quad b_2=-\rho_bg+\frac{\rho_e g}{\alpha^2}=-\alpha a_2-\frac{\rho_e g}{\alpha^2}$
+			\end{itemize}
+			\begin{center}
+				\includegraphics[width=30mm]{gravity_dam_1.eps}
+			\end{center}
+			
+		\end{block}
+	}
+\end{frame}
+
+
+% Compute divergence stress
+\begin{frame}{Check equilibrium}
+	\txb{120}{3}{12}{
+		\begin{exampleblock}{Question 1: $div_x\pdp{\stress\pxp}+\vload=0$ (static)?}
+			\begin{itemize}
+				\item $\vload\pxtp=\rho_b g \itwo$
+				\begin{enumerate}
+					\item[$\square$] $\pard[\stress][x_1]=a_2\itwo\otp\itwo-2\pdp{\rho_bg+b_2}\ione\sotp\itwo$
+					\item[$\boxtimes$] $\pard[\stress][x_2]=b_1\ione\otp\ione+b_2\itwo\otp\itwo$
+					\item[$\boxplus$] $\pard[\stress][x_3]=0$
+				\end{enumerate}
+				$\to div_x\pdp{\stress}+\vload=\square.\ione+\boxtimes.\itwo+\boxplus.\ithree+\rho_bg\itwo=-\pdp{\rho_b g+b_2}\itwo+b_2\itwo+0+\rho_bg\itwo=0$
+			\end{itemize}	
+		\end{exampleblock}
+	}
+\end{frame}
+
+
+%  Boundary Conditions
+\begin{frame}{Boundary Conditions}
+	\txb{120}{3}{12}{
+		\begin{exampleblock}{Question 2: $\stress.\nv\vert_{\Gamma_{\text{downstream}}}=0$?}
+			\begin{itemize}
+				\item $\Gamma_{\text{downstream}}: x_1-\alpha x_2=0$
+				\begin{enumerate}
+					\item $\nv\pdp{\alpha}=\frac{1}{\sqrt{1+\alpha^2}}\pdp{\ione-\alpha\itwo},\quad \nv\pdp{\alpha\to 0}=\ione, \nv\pdp{\alpha\to\infty}=-\frac{\alpha}{\vert\alpha\vert}\itwo$
+					\item $\stress\vert_{\Gamma_{\text{downstream}}}=-\rho_e g x_2\ione\otp\ione -\frac{\rho_e gx_2}{\alpha^2}\itwo\otp\itwo -2\frac{\rho_e g x_2}{\alpha} \ione\sotp\itwo$
+					\item $\stress.\nv\vert_{\Gamma_{\text{downstream}}}=-\frac{ \rho_e g x_2}{\sqrt{1+\alpha^2}}\pdp{ \ione-\frac{1}{\alpha}\itwo+\frac{1}{\alpha} \itwo  -\ione }=0$
+				\end{enumerate}
+			\end{itemize}	
+		\end{exampleblock}
+	
+	
+	\begin{exampleblock}{Question 3: $\stress.\nv\vert_{\Gamma_{\text{upstream}}}=-p i_1$?}
+		\begin{itemize}
+			\item $\Gamma_{\text{upstream}}: x_1=0$
+			\begin{enumerate}
+				\item $\nv=-\ione,\quad\sload\vert_{\Gamma_{\text{upstream}}}=-p\ione (p<0)$
+				\item $\stress\vert_{\Gamma_{\text{upstream}}}=b_1x_2\ione\otp\ione+b_2 x_2\itwo\otp\itwo\to$ NO SHEAR STRESS!
+				\item $\stress.\nv\vert_{\Gamma_{\text{upstream}}}=-b_1 x_2\ione=\rho_e g x_2 \ione = -p\ione\Rightarrow p=-\rho_e g x_2 < 0$
+				\item $\max_{x_2\in\left[0,H\right]}\stress.\nv \vert_{\Gamma_{\text{upstream}}} = \rho_e g H $
+			\end{enumerate}
+		\end{itemize}	
+	\end{exampleblock}
+	}
+\end{frame}
+
+
+%  Boundary Conditions
+\begin{frame}{Failure Criterion}
+	\txb{120}{3}{12}{
+		\begin{exampleblock}{Question 4: $\max_{\norm{\nv}=1}\dsigma_{nn}\le \dsigma_r$?}
+			\begin{itemize}
+				\item $\Gamma_{\text{upstream}}: x_1=0$
+				\begin{enumerate}
+						\item $\stress\vert_{\Gamma_{\text{upstream}}}=b_1x_2\ione\otp\ione+b_2 x_2\itwo\otp\itwo\to$ NO SHEAR STRESS!
+						\item $\dsigma_{I}=\max{\dsigma_{11},\dsigma_{22}}=x_2\max{b_1(\alpha),b_2(\alpha)}$
+						\item $\stressnn\vert_{\Gamma_{\text{upstream}}}=\pscl{\stress\vert_{\Gamma_{\text{upstream}}}.\nv }{\nv}=b_1x_2 n_1^2 + b_2 x_2 n_2^2=x_2\pdp{-\rho_e g+\rho_b g - \frac{\rho_e g}{\alpha^2}}n_1^2+\pdp{\frac{\rho_e g }{\alpha^2}-\rho_b g}x_2$
+					
+				\end{enumerate}
+			\end{itemize}
+		\end{exampleblock}
+	}
+\end{frame}

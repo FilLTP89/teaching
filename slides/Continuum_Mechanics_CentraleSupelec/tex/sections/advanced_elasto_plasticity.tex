@@ -1,0 +1,213 @@
+\subsection{Modèles élastoplastiques avancés}
+\label{subsec:advanced-elasto-plasticity}
+\framecard{Modèles élastoplastiques avancés}
+
+
+\begin{frame}{Problème élastoplastique}
+\txb{125}{0}{11}{
+	\begin{itemize}
+		\item Ingrédients pour décrire l'évolution élastoplastique?
+	\begin{enumerate}
+		\item seuil de plasticité
+		\item fonction de charge (critère de rupture)
+		\item écrouissage (évolution du seuil de plasticité)
+		\item écoulement plastique
+		\item problème d'optimisation
+		\item module d'écrouissage et multiplicateur plastique
+		\item tenseur de rigidité élastoplastique
+	\end{enumerate}
+
+\end{itemize}
+}
+\end{frame}
+
+\begin{frame}{Seuil de plasticité}
+\txb{123}{2}{11}{
+\bsys[][
+&f\pscp< 0 & \text{elasticity}\\
+&f\pscp= 0 & \text{plasticity}
+][plastic-threshold]
+\centering
+\igwf{elastic-domain}{80mm}
+}
+\end{frame}
+
+\begin{frame}{Fonction de charge}
+\txb{123}{2}{11}{
+	\bsys[][
+	&f\pscp-\sigma_{yld}\leq 0 & \text{limite élastique}\\
+	&f_{ult}\pdp{\stress}-\sigma_{ult}\leq 0, \quad(\text{for} \norm{\strainpl}\to\infty) & \text{surface limite}
+	][plastic-loci]
+	\centering
+\bfc{\subfw{deviator_plane_2}{50mm}{}
+\subfw{mises_locus_3D}{50mm}{}
+}{Modèle de Armstrong-Frederick \cite{PhD_Gatti_2017}}{deviator_plane_AF}
+}
+\end{frame}
+
+\begin{frame}{Fonction de charge}
+\txb{123}{2}{11}{Modèle de Armstrong-Frederick \vspace{-4mm}
+\bsys[][
+& f \pscp= \fvm[\pdp{\kbackstress}] - \sigma_{yld}-R\pdp{r}\leq 0 & \text{limite élastique}\\
+&f_{ult}\pdp{\stress}=\sqrt{3J_2\pdp{\deviator}} - \sigma_{yld}-R_\infty\leq 0 & \text{surface limite}
+][AF-surfaces]
+\animategraphics[height=45mm,keepaspectratio,autoplay,loop,poster,loop]{1}{mises_cylinder_}{0}{2}
+}
+\txb{60}{63}{45}{
+Variables d'écrouissage :
+\bsys[][
+& \chih = \pbp{\backstress,R} & \text{statiques}\\
+& \etah = \pbp{\kbackstress,r} & \text{cinématiques}
+][AF-hardening-variables]
+}
+\end{frame}
+
+\begin{frame}{Variables d'écrouissage}
+\txb{125}{2}{11}{
+	\begin{itemize}
+		\item Variables d'écrouissages $\equiv$ variables internes
+		\item Utilisées pour décrire l'évolution de $f\pscp$
+		\item $\chih$: variables d'écrouissage statiques\\ $\to$ collection des variables scalaires, vectorielles, tensorielles \beq{\chih=\pbp{R,\theta,...,\backstress,\tens{Y}{}{},...}}{chi-static}
+		\item $\etah$: variables d'écrouissage cinématiques \\$\to$ collection des variables scalaires, vectorielles, tensorielles
+		\item Modèle de Armstrong-Frederick $ \etah=\pbp{\kbackstress,r}$:
+			\bsys[\chih\equiv][
+		& \backstress\pdp{\kbackstress}=\frac{2}{3}C\kbackstress&\\
+		&R\pdp{r} = R_{\infty}\pdp{1- \exp\pdp{-br}} & ][]
+	\end{itemize}
+}
+\txb{38}{88}{62}{
+\igwf{hardening-scheme}{40mm}
+}
+\end{frame}
+
+
+\begin{frame}{Résolution par étapes}
+\txb{123}{2}{11}{
+	Évolution continue de $f$ en temps : $f\pdp{t+\delta t}\approx f\pdp{t}+\delta f$
+	\bsys[\text{si  } f\pdp{t} \equiv 0:][
+	& \delta f < 0 \to f\pdp{t+\delta t} < 0& \text{déchargement élastique}\\
+	& \delta f = 0 \to f\pdp{t+\delta t} = 0& \text{chargement plastique}
+	][cond_consistency_ep]
+	\vspace{-3mm}
+	\begin{enumerate}
+		\item Hypothèse 0: $\dstrainpl=\tens{0}{}{} \to \dstress[][trial]=\Del : \dstrain$\\
+		\item Vérifier la valeur de $f\pdp{\stress+\dstress[][trial];\chih}\leq 0$ 
+		\item si $f\pdp{\stress+\dstress[][trial];\chih}> 0\to$ correction: $f\pdp{\stress+\dstress[][];\chih+\dchih}=0$
+	\end{enumerate}
+	\centering
+	\ighf{nl_int_1step}{25mm}
+	\ighf{nl_int_1step_unl}{25mm}
+}
+\end{frame}
+
+\begin{frame}{Écrouissage}
+\txb{123}{2}{11}{
+	\bsys[][
+	& f\pdp{t}=0 \text{ and } \gradfstress : \dstress[][trial] > 0 & \text{écrouissage positif}\\
+	& f\pdp{t}=0 \text{ and } \gradfstress : \dstress[][trial] = 0 & \text{plasticité parfaite ($f=f_{ult}$)}\\
+	& f\pdp{t+\delta t}=0 \text{ and } \gradfstress : \dstress[][trial] < 0 & \text{écrouissage négatif}\\
+	& f\pdp{t+\delta t}<0 \text{ and } \gradfstress : \dstress[][trial] < 0 & \text{écrouissage négatif}
+	][hardening]
+	\centering
+	\ighf{hardening}{32mm}
+	\ighf{hardening-vs-perfect}{32mm}
+}
+\end{frame}
+
+\begin{frame}{Loi d'écoulement}
+
+\txb{95}{28}{11}{
+\bsys[][
+& \dstrainpl=\dplm.\gradgstress, \quad\detah =- \dplm.\gradghidd & \text{non-associée}\\
+& \dstrainpl=\dplm.\gradfstress,\quad  \detah =- \dplm.\gradfhidd & \text{associée} (f=g) 
+][flow-rule]
+}
+\txb{123}{2}{40}{
+	\beq{\plm=\int_{0}^{t}\sqrt{\frac{2}{3}\dco{\dstrainpl}}dt=}{plastic_multiplier}
+\igwf{flow-rule}{80mm}\igwf{non-associated-fr}{40mm}
+}
+\end{frame}
+
+\begin{frame}{Loi d'écoulement}
+\txb{123}{2}{11}{
+	Modèle de Armstrong-Frederick : $\lambda,\mu,C,\kappa,b, R_\infty,\sigma_{yld}$ : paramètres du modèles\\
+	Potentiel plastique: \beq{g\pscp=f\pscp+\underbrace{\frac{3}{4}\frac{\kappa}{C}\backstress:\backstress}_{\text{\textbf{fading memory}}} }{AF-pp}
+	\beq{\dstrainpl  = \dplm\gradgstress = \dplm\gradfstress=\dplm\frac{3}{2}\frac{\deviator-\backstress}{\fvm}}{AF-depl}
+	\bsys[\detah\equiv][
+	& \dkbackstress = \dplm\gradgX =\dplm\frac{3}{2}\frac{\deviator-\backstress}{\fvm}-\dplm\frac{3\kappa}{2C}\backstress\\
+	& \delta r = -\dplm \frac{\partial g}{\partial R}=-\dplm \frac{\partial f}{\partial R}=\dplm \to r\equiv  \lambda
+][AF-flow-rule]
+}
+\end{frame}
+
+\begin{frame}{Évolution du seuil de plasticité}
+\txb{125}{2}{11}{
+\beq{\dchih=\gradchieta:\detah}{grad_hidd_var}
+\centering
+\ighf{linear-kinematic-prager}{32mm}\ighf{nlinear-kinematic-prager}{32mm}\ighf{isotropic-hardening}{32mm}
+}
+\end{frame}
+
+\begin{frame}{Évolution du seuil de plasticité}
+\txb{125}{2}{11}{
+Modèle de  Armstrong-Frederick:
+\bsys[\dchih\equiv][
+& \dbackstress\pdp{\kbackstress}=\frac{2}{3}C\dkbackstress = \pdp{ C\frac{\deviator-\backstress}{\fvm}-\kappa\backstress}\dplm\\
+&\delta R\pdp{r} = b\pdp{R_{\infty}-R\pdp{r}} \dplm
+][AF-flow-rule]
+}
+\end{frame}
+
+\begin{frame}{Problème d'optimisation}
+\txb{125}{2}{11}{
+	Conditions de Karush–Kuhn–Tucker conditions:
+\bsys[\mathcal{K}:][
+&f\pscp\leq 0, \\
+&\plm \geq 0, & \forall f\pscp \in  \mathbb{S} \times \mathbb{K}  \\
+&\dplm f\pscp = 0
+][KKT_consistency]
+$\dplm$ est calculé à partir des conditions de consistance élastoplastique:
+$$\text{if } f= 0, \to \delta f = 0 \to f\pdp{t+\delta t} = 0,\quad \text{chargement plastique}$$\vspace{-5mm}
+%\beq{\delta f = \gradfstress:\underbrace{\Del:\pdp{\dstrain-\dplm\gradgstress}}_{\dstress}+\gradfhidd:\underbrace{\gradchieta}_{\dchih}:\etah}{cond_consistency_1}
+\beqh[\delta f = \gradfstress:\underbrace{\Del:\pdp{\dstrain-\dplm\gradgstress}}_{\dstress}+\gradfhidd:\underbrace{\gradchieta:\gradghidd\dplm}_{\dchih=\gradchieta:\detah}=0][cc][][ABC]
+}
+\end{frame}
+
+\begin{frame}{Module d'écrouissage}
+\txb{125}{2}{11}{
+	En résolvant l'\hyperlink{ABC}{\Cref{eq:cc}}, on trouve l'incrément du multiplicateur plastique:
+\beq{\delta f = 0\to \dplm=\frac{\gradfstress:\Del:\dstrain}{\underbrace{\gradfstress:\Del:\gradgstress}_{\mathcal{H}_{c}\text{=module d'ecrouissage critique}} - \underbrace{\gradfhidd:\gradchieta:\gradghidd}_{\mathcal{H}\text{=module d'ecrouissage}}}}{plm_sol}
+Modèle de Armstrong-Frederick:
+}
+
+\txb{60}{2}{50}{
+{\scriptsize
+\bsys[][
+& \gradfX=-\frac{3}{2}\frac{\deviator-\backstress}{\fvm};\frac{\partial f}{\partial R}=-1\\
+&  \tens{\delta X}{}{}=\pdp{ C\frac{\deviator-\backstress}{\fvm}-\kappa\backstress}\dplm\\
+&\delta R = b\pdp{R_{\infty}-R\pdp{r}} \dplm
+][AF-Hcomp]}
+}
+
+\txb{60}{62}{55}{
+	{\scriptsize
+	\bsys[][
+	& \Hent = C-\frac{3\kappa}{2}\frac{\pdp{\deviator-\backstress}:\backstress}{\fvm}+b\pdp{R_{\infty}-R}\\
+	& \Hent[c] = 3\mu
+	][AF-moduleH]
+}
+}
+\end{frame}
+
+
+\begin{frame}{Tenseur de rigidité élastoplastique}
+\txb{125}{2}{11}{
+À l'aide de l'\Cref{eq:plm_sol}, l'incrément élastoplastique de l'état de contrainte peut s'écrire sous forme:
+\beq{\dstress = \Del:\pdp{\dstrain+\underbrace{\frac{\gradfstress:\Del:\dstrain}{\Hent-\Hent[c]}}_{-\dplm}\gradgstress}}{dstress-ep}
+Le tenseur de rigidité élastoplastique est identifiée :
+\beq{\Dep=\Del:\pdp{\IDD+\frac{\gradgstress\otimes\Del:\gradfstress}{\Hent-\Hent[c]}}}{Dep}
+
+\beq{\dstress=\Dep:\dstrain}{dstressDepdstrain}
+
+}
+\end{frame}
