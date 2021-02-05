@@ -1,0 +1,22 @@
+Du Blackboard Bold Grec
+"""""""""""""""""""""""
+Polices de caracteres pour TeX
+
+Pour savoir comment proceder, regarder le fichier
+  exemple.ps
+puis son source
+  exemple.tex
+
+Le cahier des charges est constitue du fichier
+  test.ps
+et de son source
+  test.tex
+
+L'installation se passe en utilisant le Makefile
+dont la documentation s'obtient en ligne avec
+make.
+
+Bien entendu, toute utilisation est sans garantie
+et toutes les ameliorations sont bienvenues.
+
+							    DD

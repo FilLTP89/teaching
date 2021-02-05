@@ -1,0 +1,29 @@
+% [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+%     Computer Modern Math Italic Blackboard Sans Serif Special
+%	DRIVER FILE d'apres mathit.mf
+% [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+%     DUREISSEIX David    L.M.T. STRUCTURES et CMAO  le 13 / 05 / 95
+%
+% ======================================================================
+% The Computer Modern Math Italic family (by D. E. Knuth, 1979--1985)
+
+font_coding_scheme:="TeX math italic";
+mode_setup; font_setup;
+
+%input romanu;  % upper case (majuscules)
+%input itall;  % lower case (minuscules)
+%input greeku;  % upper case greek letters
+%input greekl;  % lower case Greek letters
+input bbddgreekl;  % lower case Greek letters
+%input italms;  % special symbols for math italic
+font_slant slant;  font_x_height x_height#;
+font_quad 18u#+4letter_fit#;
+
+slant:=mono_charic#:=0;  % the remaining characters will not be slanted
+currenttransform:=identity yscaled aspect_ratio scaled granularity;
+input bbddgreeku; % upper case greek letters
+input bbddromanl; % lower case roman letters
+%input olddig;  % oldstyle numerals
+%input romms;  % roman math specials
+
+bye.

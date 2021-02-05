@@ -1,0 +1,394 @@
+% [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+%     Computer Modern Math Italic Blackboard Sans Serif Special
+%	PROGRAM FILE d'apres greekl.mf
+% [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+%     DUREISSEIX David    L.M.T. STRUCTURES et CMAO  le 13 / 05 / 95
+%     DUREISSEIX David    L.M.T. STRUCTURES et CMAO  le 19 / 06 / 96
+%	  \0037
+%
+%     Grec Blackboard Bold
+%     a partir de Computer Modern Math Italic et
+%     des fontes bbm
+%
+%	Character codes \0031, \0033, \0042 and \0037 are generated.
+%	Attention : cette redefinition est tres laide.
+% ======================================================================
+%
+cmchar "Lowercase Greek sigma";
+%       """""""""""""""""""""
+%                     1 5      6
+%
+%                4        7 2
+%    
+%                     3
+%
+beginchar(oct"033",10.25u#,x_height#,0);
+italcorr x_height#*slant+.5stem#-u#;
+adjust_fit(0,0);
+pickup fine.nib;
+pos1(vstem,90); pos2(vair,0); pos3(vair,-90);
+pos4(stem,-180); pos5(vstem,-270); pos6(vstem,-270);
+%
+pos7(vair,0);
+x1=x3=x5=.5[x2,x4]; rt x2r=hround(w-1.5u);
+%
+rt x7r=hround(w-4.u);
+lft x4r=hround(1.5u-.5curve);x6=w-1.u;
+top y1r=h; y2=y4=.5[y1,y3]; bot y3r=-oo; y5=y6=y1;
+%
+y7=y2;
+filldraw circ_stroke z6e..pulled_arc.e(5,4) & pulled_arc.e(4,3)
+ & pulled_arc.e(3,2) & pulled_arc.e(2,1)
+ ..pulled_arc.e(3,7) & pulled_arc.e(7,1);
+math_fit(-.3x_height#*slant+.5curve#-u#,ic#-1/3x_height#*slant);
+penlabels(1,2,3,4,5,6,7); endchar;
+
+cmchar "Variant lowercase Greek epsilon";
+%       """""""""""""""""""""""""""""""
+%                       2
+%                  3 10       1
+%
+%                      4
+%                      6    5
+%
+%                  7 11       9
+%                       8
+%
+beginchar(oct"042",8u#,x_height#,0);
+italcorr x_height#*slant-.5u#;
+adjust_fit(0,0); pickup fine.nib;
+numeric light_vstem; light_vstem=Vround 2/3[vair,vstem];
+%pos2(light_vstem,90);
+pos2(.6vstem,90);
+x2=x8=.5w+.5u;
+top y2r=h+o;
+x1+.5light_vstem=hround(w-u);
+y1=.2[y2,bar_height];
+pos1(light_vstem,angle(x1-x2,2(y1-y2))+90);
+%pos3(hair,180); pos10(hair,180);
+pos3(vair,180); pos10(vair,180);
+pos4(vair,270);
+pos5(hair,360);
+pos6(vair,450);
+%pos7(hair,540); pos11(hair,540);
+pos7(vair,540); pos11(vair,540);
+%pos8(light_vstem,630);
+pos8(.6vstem,630);
+%lft x3r=hround u;
+lft x3r=hround 0.6u;
+x4=x6=.5w;
+rt x5r=hround(w-2.5u);
+x7=x3;
+y3=.5[y2,y4];
+y10=y3;
+lft x10r=hround 3.5u;
+y5=bar_height=.5[y4,y6];
+y7=.5[y6,y8];
+y11=y7;
+x11=x10;
+bot y8r=-o;
+top y6r-bot y4r=vstem+eps;
+%if y6l<y4l: y6l:=y4l:=y5; fi
+y6l:=y4l:=y5;
+x9+.5vair=hround(w-.5u);
+y9=1/3[y8,bar_height];
+pos9(vair,angle(x8-x9,2(y8-y9))+90);
+filldraw circ_stroke z1e{x2-x1,2(y2-y1)}...pulled_super_arc.e(2,3)(.5superpull)
+ & super_arc.e(3,4)...{up}z5e;  % upper arc
+filldraw circ_stroke z1e..pulled_arc.e(2,10) & pulled_arc.e(10,4);
+filldraw circ_stroke z9e{x8-x9,8(y8-y9)}...pulled_arc.e(8,7)
+ & super_arc.e(7,6)...{down}z5e;  % lower arc
+filldraw circ_stroke z9e..pulled_arc.e(8,11) & pulled_arc.e(11,6);
+math_fit(-.5bar_height#*slant-.5u#,ic#);
+penlabels(1,2,3,4,5,6,7,8,9); endchar;
+
+cmchar "Lowercase Greek pi";
+%       """"""""""""""""""
+%                4 8  6
+%
+%    
+%               5 9    7
+%
+beginchar(oct"031",10u#,x_height#,0);
+italcorr x_height#*slant+.5stem#-u#;
+adjust_fit(0,0);
+pi_stroke; % hook and bar
+%pos4(hair,0);
+pos4(vair,0); pos8(vair,0);
+pos6(hair,0);
+%x4=3.5u;
+x4=2.5u; x8=4.5u;
+%x6=w-4u;
+x6=w-3u;
+y4=y6=y2; y8=y4;
+%x5=3u;
+x5=2u; x9=4u;
+%x7=w-2.5u;
+x7=w-1.5u;
+y5=y7=.5stem-oo; y9=y5;
+pair v[];
+v1=(z4-z5) xscaled 3.14159;
+v2=(z6-z7) xscaled 3.14159;
+%pos5(stem,angle v1-90);
+pos5(vair,angle v1-90); pos9(vair,angle v1-90);
+pos7(stem,angle v2-90);
+filldraw circ_stroke z5e{v1}...{up}z4e;  % left stem
+filldraw circ_stroke z9e{v1}...{up}z8e;  % left stem
+filldraw circ_stroke z5e{v1}...{up}z9e;  % join
+filldraw circ_stroke z7e{v2}...{up}z6e;  % right stem
+math_fit(-.7x_height#*slant+.5hair#+.5u#,ic#-1/3x_height#*slant);
+penlabels(1,2,3,4,5,6,7);
+endchar;
+
+cmchar "Lowercase Greek chi";
+%       """""""""""""""""""
+%          2        7  9
+%
+%
+%
+%          9 10       6
+%
+beginchar(oct"037",11u#,x_height#,desc_depth#);
+italcorr x_height#*slant+.5hair#-1.5u#;
+adjust_fit(0,0);
+pickup fine.nib;
+pos1(hair,180);
+pos2(vair,80);
+pos5(vair,80);
+pos6(hair,180);
+x1-.5hair=hround-.5hair;
+x6=w-x1;
+x2=w-x5=u;
+y1=y2l-h/8;
+top y2r=h+oo;
+bot y5l=-d-oo;
+y6=y5r+h/8;
+z0=.5[z2,z5];
+z2'=z2l+(.5u,0);
+z5'=z5r-(.5u,0);
+numeric theta;
+theta=angle(z5'-z2')+90;
+pos3(stem,theta);
+pos4(stem,theta);
+y3r=y2r-h/8;
+y4l=y5l+h/8;
+z3l=whatever[z2',z0];
+z4r=whatever[z0,z5'];
+filldraw stroke z1e{up}...z2e{right}...z3e{z4r-z3l}
+ ..z4e{z4r-z3l}...{right}z5e...{up}z6e;  % major diagonal and hooks
+%x8=w-x7=2u;
+x8=2u; x7=w-3.1u;
+y7+.5hair=h;
+y8-.5hair=-d;
+%
+x9=x7+2.2u;
+x10=x8+2.2u;
+y9=y7;
+y10=y8;
+%
+numeric theta;
+theta=angle(z7-z8)-90;
+pos7(hair,theta);
+pos8(hair,theta);
+%
+pos9(hair,theta);
+pos10(hair,theta);
+filldraw z7l---z8l..z8r---z7r..cycle;  % minor diagonal
+%
+filldraw z9l---z10l..z10r---z9r..cycle;  % minor diagonal dd
+filldraw z7l---z9l..z9r---z7r..cycle;  % on ferme dd
+filldraw z8l---z10l..z10r---z8r..cycle;  % on ferme dd
+%
+math_fit((desc_depth#-x_height#)*slant+ic#,ic#);
+%penlabels(0,1,2,2',3,4,5',5,6,7,8);
+penlabels(0,1,2,2',3,4,5',5,6,7,8,9,10);
+endchar;
+
+cmchar "Lowercase Greek alpha";
+%       """""""""""""""""""""
+%
+%                    3      8   0
+%             
+%                 2      4 5 6
+%
+%                    1         7
+%
+beginchar(oct"013",11u#,x_height#,0);
+italcorr max(1/3x_height#*slant+.5hair#+.5u#,x_height#*slant-.5u#);
+adjust_fit(0,0);
+pickup fine.nib;
+%pos0(hair,0);
+pos0(vair,0);
+pos1(vair,-90);
+pos2(curve,-180);
+pos3(vair,-270);
+%
+pos8(vair,0);
+%%%%%%%%%%%%%%pos9(vair,-90);
+%
+%z4=(w-3.25u,9/16h);
+z4=(w-4.25u,9/16h);
+%z5=(w-2.75u,.5[vair,y4]);
+z5=(w-3.75u,.5[vair,y4]);
+numeric theta;
+theta=angle(z4-z5)-90;
+pos4(stem,theta);
+pos5(stem,theta);
+pos6(vair,90);
+pos7(hair,180);
+rt x0r=hround(w-u);
+x1=x3=.5w-u;
+lft x2r=hround(1.5u-.5curve);
+%x6=w-u; 
+x6=w-2u; 
+%x7+.5hair=hround(w+.5hair-epsilon);
+x7+.5hair=hround(w+.5hair-epsilon-u);
+top y0=vround .8[bar_height,h]; 
+bot y1r=bot y6l=-oo;
+%
+rt x8r=hround(w-3u);
+top y8=vround .8[bar_height,h];
+%%%%%%%%%%%%%%x9=x1-2u;
+%%%%%%%%%%%%%%bot y9r=-oo;;
+%
+y2=.5[y1,y3]; 
+top y3r=h+oo; 
+y7=1/4bar_height;
+filldraw stroke z0e{down}...pulled_arc.e(1,2) & pulled_arc.e(2,3)
+ ...z4e---z5e...z6e{right}...{up}z7e; % diagonal, bowl, and hook
+math_fit(-.3x_height#*slant+.5curve#-u#,1/3x_height#*slant+.5hair#+.5u#);
+%
+%draw z8---z9..z9---z2;
+filldraw stroke z8e{down}...pulled_arc.e(1,2) & pulled_arc.e(2,3)
+ ...z4e---z5e...z6e{right}...{up}z7e; % on double
+draw z0---z8; % on ferme
+%
+%penlabels(0,1,2,3,4,5,6,7);
+penlabels(0,1,2,3,4,5,6,7,8);
+endchar;
+
+cmchar "Lowercase Greek beta";
+%       """"""""""""""""""""
+%
+%        2                           2
+%     1                         1 11
+%            3                           3
+%        6                           6
+%       5                           5
+%        4                           4
+%            7                           7
+%     9                         9 
+%        8                           8
+%
+%     0                         0 10
+%
+beginchar(oct"014",9.5u#,asc_height#,desc_depth#);
+italcorr .5[x_height#,asc_height#]*slant-u#;
+adjust_fit(0,0);
+pickup fine.nib;
+%pos0(hair,180); 
+pos0(vair,180); 
+%pos1(hair,180); 
+pos1(vair,180); 
+pos2(vair,90);
+pos3(stem,0); 
+pos4(vair,-90); 
+pos5(hair,-180);
+pos6(vair,-270); 
+pos7(curve,-360); 
+pos8(vair,-450); 
+pos9(hair,-540);
+%
+pos10(vair,180);
+pos11(vair,180);
+%
+x0=x1=x9; 
+%lft x0l=hround(1.5u-.5hair); 
+lft x0l=hround(2.u-.5hair); 
+%
+x10=x11;
+lft x10l=hround(-.5hair);
+%
+x2=x4=x6=x8=.5w+.25u;
+rt x3r=hround(w-1.5u); 
+rt x7r=hround(w-1.5u+.5curve); 
+rt x5l=hround(x4-u);
+bot y0=-d; 
+y1=top y6r=x_height; 
+%
+bot y10=-d;
+y11=x_height;
+%
+top y2r=h+oo; 
+y3=.5[y2,y4];
+y5=.5[y4,y6]; 
+top y6r-bot y4r=vstem+eps; 
+bot y8=-oo; 
+y7=y9=.5[y6,y8];
+if y6l<y4l: y6l:=y4l:=y5; 
+fi
+filldraw stroke z0e---z1e...pulled_arc.e(2,3)
+ & pulled_arc.e(3,4)...{up}z5e;  % stem and upper bowl
+filldraw stroke z5e{up}...pulled_arc.e(6,7)
+ & pulled_arc.e(7,8)...{up}z9e;  % lower bowl
+math_fit(desc_depth#*slant+.5hair#-u#,.7x_height#*slant+.5curve#-1.5u#);
+filldraw stroke z10e---z11e...pulled_arc.e(2,3)
+ & pulled_arc.e(3,4)...{up}z5e;  % On boucle dd
+draw z0---z10; % on ferme
+%penlabels(0,1,2,3,4,5,6,7,8,9); 
+penlabels(0,1,2,3,4,5,6,7,8,9,10,11); 
+endchar;
+
+cmchar "Lowercase Greek lambda";
+%       """"""""""""""""""""
+%
+%     1  2                     1  2  
+%                              
+%                                   
+%            3                        3
+%          5                        5
+%                                      7
+%                                    
+%
+%     6          4               6   8      4
+%
+beginchar(oct"025",10.5u#,asc_height#,0);
+adjust_fit(0,0);
+pickup fine.nib;
+pos1(vair,90); 
+lft x1=hround .1u; 
+top y1r=h;
+x2=x1+2u; 
+y2=.7[x_height,h];
+x3=w-2u;
+bot y4=-oo; 
+y3=max(.07h,y4+eps);
+z4-(.25u,0)=whatever[z2,z3]; 
+numeric theta; 
+theta=angle(z2-z3)-90;
+pos2(stem,theta); 
+pos3(stem,theta);
+pos4(stem,0);
+filldraw circ_stroke z1e{right}...z2e---z3e
+ ...{2(x4e-x3e),y4e-y3e}z4e;  % long diagonal
+y5=.5[bar_height,x_height]; 
+z5=whatever[z2,z3];
+x6=1.5u; 
+y6-.5stem=-oo; 
+%x6=2u; 
+%y6-.2stem=-oo; 
+x7 = x5 + 1.2u;
+y7 = y5 - 1.2u;
+x8 = x6 + 1.2u + .5u;
+y8 = y6 - 1.2u + 1.2u;
+pos5(hair,theta-90); 
+%pos6(stem,angle(z5-z6)-90);
+pos6(hair,theta-90); 
+pos7(hair,theta-90); 
+pos8(hair,theta-90); 
+filldraw circ_stroke z6e--z5e; % short diagonal
+filldraw circ_stroke z8e--z7e; % DD
+filldraw circ_stroke z6e--z8e; % DD
+penlabels(1,2,3,4,5,6,7,8); 
+endchar;
+

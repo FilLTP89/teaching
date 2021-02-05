@@ -1,0 +1,290 @@
+% [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+%     Computer Modern Math Italic Blackboard Sans Serif Special
+%     PROGRAM FILE d'apres greeku.mf et roman.mf
+% [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+%     DUREISSEIX David    L.M.T. STRUCTURES et CMAO  le 16 / 07 / 95
+%
+%     \Sigma et \Epsilon  en Blackboard Bold
+%
+%     Character codes \0006 and \0007 are generated.
+%     Attention : cette redefinition est tres laide.
+% ======================================================================
+%
+%cmchar "fleche";
+%beginchar(oct"001",34u#,18u#,0);
+%pickup pencircle scaled .4pt;
+%ux:=2u;
+%uy:=2u;
+%z1=(16.85ux,8.6uy); z2=(13.2ux,6.9uy); z3=(13.ux,7.3uy);
+%z4=(11.9ux,5.35uy); z5=(14.ux,4.9uy); z6=(13.8ux,5.3uy);
+%z7=(17.6ux,6.9uy);
+%draw z1--z2--z3--z4--z5--z6--z7;
+%endchar;
+%
+%cmchar "verti";
+%beginchar(oct"002",8.5u#,6u#,-2u#);
+%pickup pencircle scaled .4pt;
+%ux:=2u;
+%uy:=2u;
+%z11=(3.6ux,2.6uy); z12=(2.15ux,1.9uy);
+%draw z11--z12;
+%z13=(1.9ux,1.8uy); z14=(1.6ux,1.9uy); z15=(1.6ux,2.2uy);
+%draw z12..z13..z14..z15;
+%z16=(1.6ux,9.8uy); z17=(0,9.2uy); z18=(0,2.2uy);
+%draw z15--z16--z17--z18;
+%z19=(0,0); z20=(.85ux,-.5uy); z21=(2.8ux,.3uy);
+%draw z18..z19..z20..z21;
+%z22=(4.25ux,uy);
+%draw z21--z22;
+%endchar;
+%
+%cmchar "pointe";
+%beginchar(oct"003",11u#,6u#,0);
+%pickup pencircle scaled .4pt;
+%ux:=2u;
+%uy:=2u;
+%z31=(4.45ux,.6uy); z32=(5.5ux,2.5uy); z33=(3.4ux,3uy);
+%%draw --z31--z32-z33;
+%draw z31--z32-z33;
+%endchar;
+%
+%cmchar "jambe";
+%beginchar(oct"004",21u#,22u#,-.3u#);
+%ux:=2u;
+%uy:=2u;
+%z41=(0,9.2uy); z42=(-3.2ux,11uy); z43=(-6.3ux,7.5uy); z44=(-3.8ux,2uy);
+%draw z41..z42..z43..z44;
+%z45=(-2.7ux,-.15uy); z46=(-2.7ux,-.15uy); z47=(-1.2ux,.2uy);
+%draw z44..z45..z46..z47;
+%z48=(-4.3ux,5.8uy); z49=(-3.7ux,9.8uy); z50=(0,8.4uy);
+%draw z47..z48..z49..z50;
+%z51=(3.7ux,9.8uy); z52=(4.3ux,5.8uy); z53=(1.2ux,.2uy);
+%draw z50..z51..z52..z53;
+%z54=(2.7ux,-.15uy); z55=(2.7ux,-.15uy); z56=(3.8ux,2uy);
+%draw z53..z54..z55..z56;
+%z57=(6.3ux,7.5uy); z58=(3.2ux,11uy); z59=(0,9.2uy);
+%draw z56..z57..z58..z59;
+%endchar;
+%
+
+cmchar "Uppercase Greek Sigma";
+%       """""""""""""""""""""
+beginchar(oct"006",13u#,cap_height#,0);
+italcorr cap_height#*slant-beak_jut#-.5u#;
+adjust_fit(0,0);
+numeric bot_arm_thickness; bot_arm_thickness=Vround .25[slab,cap_vstem];
+pickup tiny.nib;
+lft x1l=hround u;
+x1l=x2l=x4l;
+top y1=h;
+bot y2=h-slab-eps;
+bot y4=0;
+x3l-x1l=4/11(w-2u);
+y3=.5h;
+%numeric alpha[]; alpha1=((x3l-x1l)++(y2-y3))/(y2-y3);
+numeric alpha[]; alpha1=3*((x3l-x1l)++(y2-y3))/(y2-y3);
+penpos1(alpha1*(cap_stem-tiny),0);
+penpos2(alpha1*(cap_stem-tiny),0);
+penpos3(alpha1*(cap_stem-tiny),0);
+%alpha2=diag_ratio(1,cap_hair-tiny,y3-y4,x3r-x4l);
+%penpos4(alpha2*(cap_hair-tiny),0);
+penpos4(alpha1*(cap_stem-tiny),0);
+%z0=whatever[z2l,z3l]=z4l+whatever*(z3r-z4r);
+%filldraw z1l--z2l--z0--z4l--z4r--z3r--z2r--z1r--cycle;  % diagonals
+draw z1l--z2l--z3l--z4l--z4r--z3r--z2r--z1r--cycle;  % diagonals
+pickup crisp.nib;
+pos5(slab,90);
+pos6(hair,0);
+top y5r=h;
+%x5=x1;
+x5l=x1l;
+rt x6r=hround(w-u);
+y6=good.y(y5l-beak)-eps;
+arm(5,6,a,beak_darkness,beak_jut);  % upper arm and beak
+pos7(bot_arm_thickness,-90);
+pos8(hair,0);
+bot y7r=0;
+%z7l=whatever[z4,z3];
+%x7r:=x4;
+x7l=x4l;
+x8=x6;
+y8=good.y(y7l+beak)+eps;
+arm(7,8,b,beak_darkness,beak_jut);  % lower arm and beak
+math_fit(0,.5ic#);
+%penlabels(0,1,2,3,4,5,6,7,8);
+penlabels(1,2,3,4,5,6,7,8);
+endchar;
+
+%cmchar "Uppercase Greek Epsilon";
+%%       """""""""""""""""""""""
+%beginchar(oct"007",12u#-width_adj#,cap_height#,0);
+%italcorr cap_height#*slant-beak_jut#-.5u#;
+%adjust_fit(cap_serif_fit#,0);
+%h:=vround(h-stem_corr);
+%pickup tiny.nib;
+%%%pos1(cap_stem,0); pos2(cap_stem,0);
+%pos1(2.2cap_stem,0);
+%pos2(2.2cap_stem,0);
+%%%lft x1l=lft x2l=hround max(2u,3u-.5cap_stem);
+%lft x1l=lft x2l=hround 2u-.5cap_stem;
+%top y1=h; bot y2=0;
+%%%filldraw stroke z1e--z2e; % stem
+%draw stroke z1e--z2e; % stem
+%pickup crisp.nib;
+%pos3(slab,90);
+%pos4(hair,0);
+%top y3r=h;
+%%%x3=x1
+%x3l=x1l-.3cap_stem;
+%rt x4r=hround(w-u);
+%y4=good.y(y3l-beak)-eps;
+%arm(3,4,e,beak_darkness,beak_jut);  % upper arm and beak
+%pos5(cap_bar,-90);
+%pos6(hair,0);
+%top y5l=vround(.52[y2,y1]+.5cap_bar);
+%%%x5=x1;
+%x5=x1r;
+%pos0(cap_bar,90);
+%pos7(hair,0);
+%z0=z5;
+%x6=x7;
+%y6-y5l=y0l-y7;
+%if serifs:
+% rt x6r=hround(w-4.4u+.5hair);
+% y6=good.y(y5l+.6beak)+eps;
+% rt x9r=hround(w-.5u);
+%else:
+% rt x6r=hround(w-1.5u);
+% y6=y5l+eps;
+% rt x9r=hround(w-.75u);
+%fi
+%arm(5,6,f,beak_darkness,0);
+%arm(0,7,g,beak_darkness,0);  % middle arm and serif
+%pos8(slab if not serifs:+2stem_corr fi,-90);
+%pos9(hair,0);
+%bot y8r=0;
+%%%x8=x2;
+%x8l=x2l-.3cap_stem;
+%y9=good.y(y8l+7/6beak)+eps;
+%arm(8,9,h,beak_darkness,1.5beak_jut);  % lower arm and beak
+%%if serifs:
+%% nodish_serif(1,2,a,1/3,cap_jut,b,1/3,.5cap_jut);  % upper serif
+%% nodish_serif(2,1,c,1/3,cap_jut,d,1/3,.5cap_jut);  % lower serif
+%%%fi
+%math_fit(0,.5ic#);
+%penlabels(0,1,2,3,4,5,6,7,8,9);
+%endchar;
+
+cmchar "Uppercase Greek Omega";
+%       """""""""""""""""""""
+%
+%                1
+%
+%            2 10    4
+%
+%             3     5
+%
+beginchar(oct"012",13u#,cap_height#,0);
+italcorr .75cap_height#*slant-.5u#;
+adjust_fit(0,0);
+pickup tiny.nib;
+pos1(vair,90);
+%pos2(cap_curve,180);
+pos2(vair,180); pos10(vair,180);
+pos3(vair,180);
+pos4(cap_curve,0);
+pos5(vair,0);
+x1=.5w;
+top y1r=h+o;
+lft x2r=hround u;
+lft x10r=hround(u+2.5u);
+y2=y4=2/3h;
+y10=y2;
+x4=w-x2;
+rt x3l=hround(1/3(w+.5u)+.5hair);
+bot y3=bot y5=0;
+x5=w-x3;
+filldraw stroke z3e{up}...{up}z10e
+ & pulled_super_arc.e(10,1)(.5superpull)
+ & pulled_super_arc.e(1,4)(.5superpull)
+ & z4e{down}...{down}z5e;  % bowldd
+filldraw stroke z3e{up}...{up}z2e
+ & pulled_super_arc.e(2,1)(.5superpull)
+ & pulled_super_arc.e(1,4)(.5superpull)
+ & z4e{down}...{down}z5e;  % bowl
+numeric arm_thickness;
+path p;
+p=z3{up}...{up}z2;
+arm_thickness=Vround(if hefty:slab+2stem_corr else:.75[slab,cap_vstem] fi);
+pickup crisp.nib;
+pos6(arm_thickness,-90);
+pos7(fudged.hair,-180);
+bot y6r=0;
+x6=x3;
+lft x7r=hround .8u;
+y7=good.y(y6l+.5beak)+eps;
+(x,y)=p intersectionpoint((0,y6l)--(w,y6l));
+x6l:=x;
+arm(6,7,a,.5beak_darkness,-1.2beak_jut);  % left arm and beak
+pos8(arm_thickness,-90);
+pos9(fudged.hair,0);
+y8=y6;
+y9=y7;
+x8+x6=x9+x7=w;
+x8l:=w-x6l;
+arm(8,9,b,.5beak_darkness,1.2beak_jut);  % right arm and beak
+math_fit(0,.5ic#);
+%penlabels(1,2,3,4,5,6,7,8,9);
+penlabels(1,2,3,4,5,6,7,8,9,10);
+endchar;
+
+cmchar "Uppercase Greek Lambda";
+%       """"""""""""""""""""""
+%
+%         2  3                    2  3
+%                              
+%                                   7
+%                                     
+%                                   
+%                                       
+%                                    
+%
+%     1          4            1   8       4
+%
+beginchar(oct"003",12u#,cap_height#,0);
+adjust_fit(cap_serif_fit#,cap_serif_fit#);
+numeric left_stem,outer_jut,alpha;
+left_stem=cap_hair if hefty: -3stem_corr fi;
+outer_jut=.7cap_jut; 
+x1l=w-x4r=l+letter_fit+outer_jut+.5u; 
+y1=y4=0;
+x2-x1=x4-x3; 
+x3r=x2r+apex_corr; 
+y2=y3=h+apex_o+apex_oo;
+alpha=diag_ratio(2,left_stem,y2-y1,x4r-x1l-apex_corr);
+penpos1(alpha*left_stem,0); 
+penpos2(alpha*left_stem,0);
+penpos3(alpha*cap_stem,0); 
+penpos4(alpha*cap_stem,0);
+z0=whatever[z1r,z2r]=whatever[z3l,z4l];
+if y0<h-cap_notch_cut: y0:=h-cap_notch_cut;
+  fill z0+.5right{down}...{z4-z3}diag_end(3l,4l,1,1,4r,3r)
+    --diag_end(4r,3r,1,1,2l,1l)--diag_end(2l,1l,1,1,1r,2r){z2-z1}
+    ...{up}z0+.5left--cycle; % left and right diagonals
+else: fill z0--diag_end(0,4l,1,1,4r,3r)--diag_end(4r,3r,1,1,2l,1l)
+    --diag_end(2l,1l,1,1,1r,0)--cycle; fi % left and right diagonals
+if serifs: numeric inner_jut; pickup tiny.nib;
+ prime_points_inside(1,2); prime_points_inside(4,3);
+ if rt x1'r+cap_jut+.5u+1<=lft x4'l-cap_jut: inner_jut=cap_jut;
+ else: rt x1'r+inner_jut+.5u+1=lft x4'l-inner_jut; fi
+ dish_serif(1',2,a,1/2,outer_jut,b,.6,inner_jut)(dark);  % left serif
+ dish_serif(4',3,c,1/2,inner_jut,d,1/3,outer_jut); fi  % right serif
+x7 = x2 + .9u;
+y7 = y2 - 2.6u;
+x8 = x1 + 1.2u + .5u;
+y8 = y1 + .5stem ;
+pos7(hair,theta-90); 
+pos8(hair,theta-90); 
+filldraw circ_stroke z8e--z7e; % DD
+penlabels(0,1,2,3,4,5,6,7,8); 
+endchar;

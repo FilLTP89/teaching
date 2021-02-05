@@ -1,0 +1,120 @@
+\usepackage[toc,page]{appendix}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{latexsym}
+\usepackage{amsmath,amsthm,amsfonts,empheq,relsize}
+\usepackage[dvips]{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{epstopdf}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,breaklinks=true,pageanchor=false,hypertex]{hyperref}
+\epstopdfsetup{update,prepend}
+\usepackage{times}
+\usepackage[table,xcdraw]{xcolor}
+%\selectcolormodel{gray}
+\usepackage{multirow}
+\usepackage{mwe}
+\usepackage{subfig}
+\usepackage{tabularx}
+\usepackage{stackengine}
+\usepackage{authblk}
+\usepackage{eurosym}
+\usepackage[toc,page]{appendix}
+\usepackage{natbib}
+
+\usepackage{url}
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+	\@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leo}
+\usepackage{algorithm}
+% http://ctan.org/pkg/algorithm
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{listings}
+\usepackage{varwidth}
+%\usepackage{longtable}
+\usepackage[bottom]{footmisc}
+%============
+% NEW COLORS
+%============
+\definecolor{olive}{rgb}{0.3, 0.4, .1}
+\definecolor{fore}{RGB}{249,242,215}
+\definecolor{back}{RGB}{51,51,51}
+\definecolor{title}{RGB}{255,0,90}
+\definecolor{dgreen}{rgb}{0.,0.6,0.}
+\definecolor{fgreen}{RGB}{0 212 85}
+\definecolor{gold}{rgb}{1.,0.84,0.}
+\definecolor{junglegreen}{cmyk}{0.99,0,0.52,0}
+\definecolor{bluegreen}{cmyk}{0.85,0,0.33,0}
+\definecolor{rawsienna}{cmyk}{0,0.72,1,0.45}
+\definecolor{magenta}{cmyk}{0,1,0,0}
+\definecolor{POLIMIgray}{RGB}{114,143,165}
+\definecolor{IntenseBlue}{rgb}{0,0.7109,1.0000}
+\definecolor{IntenseOrange}{rgb}{1.0000,0.4141,0.1875}
+\definecolor{IntenseGreen}{rgb}{0.1211,0.7109,0.1445}
+\usepackage{color}
+\newcommand{\hl}[1]{\colorbox{gray!50}{#1}}
+%===============================================================
+% TIKZ
+%===============================================================
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{external}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\tikzstyle{snofill}=[rectangle,draw,minimum size=1.4em,rounded corners]
+\tikzstyle{sfill}=[rectangle,draw,fill=gold!20,minimum size=1.4em,rounded corners]
+% Defines a `datastore' shape for use in DFDs.  This inherits from a
+% rectangle and only draws two horizontal lines.
+\makeatletter
+\pgfdeclareshape{datastore}{
+	\inheritsavedanchors[from=rectangle]
+	\inheritanchorborder[from=rectangle]
+	\inheritanchor[from=rectangle]{center}
+	\inheritanchor[from=rectangle]{base}
+	\inheritanchor[from=rectangle]{north}
+	\inheritanchor[from=rectangle]{north east}
+	\inheritanchor[from=rectangle]{east}
+	\inheritanchor[from=rectangle]{south east}
+	\inheritanchor[from=rectangle]{south}
+	\inheritanchor[from=rectangle]{south west}
+	\inheritanchor[from=rectangle]{west}
+	\inheritanchor[from=rectangle]{north west}
+	\backgroundpath{
+		%  store lower right in xa/ya and upper right in xb/yb
+		\southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+		\northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+		\pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+		\pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@ya}}
+		\pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+		\pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+	}
+}
+\makeatother
+
+%% FANCEY HEADER/FOOTERS
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhead[LE,RO]{}
+%\fancyfoot[LO,CE]{\thepage} % clear all footer fields 
+%\fancyfoot[LO,RE]{\textcolor{blue}{PHD candidate: Filippo Gatti}}
+%\fancyfoot[RO,LE]{\textcolor{blue}{-- DRAFT -- \today}}
+
+
+%\usepackage{epigraph}
+\makeatletter
+\renewcommand{\@chapapp}{}% Not necessary...
+\newenvironment{chapquote}[2][2em]
+{\setlength{\@tempdima}{#1}%
+	\def\chapquote@author{#2}%
+	\parshape 1 \@tempdima \dimexpr\textwidth-2\@tempdima\relax%
+	\itshape}
+{\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
+\makeatother
+
+\usepackage{nomencl}
+\makenomenclature
