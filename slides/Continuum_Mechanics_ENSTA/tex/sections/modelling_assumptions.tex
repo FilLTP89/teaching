@@ -1,0 +1,67 @@
+\subsection{Hypothèses fondamentales}
+\label{subsec:modelling_hypothesis}
+\framecard{Hypothèse fondamentales}
+\begin{frame}{Généralités}
+\begin{enumerate}
+\item Relation entre contraintes et déformations (et/ou leur taux) \\
+$ \stress \longleftrightarrow \strain$ ??
+\item Nécessité d'un état de contraintes (déformations) homogènes, sans
+localisation des déformations
+\item Nécessité de définir les domaines de comportement\\
+Élasticité vs. Plasticité vs. Viscosité ??
+\item Nécessité des expériences au laboratoire
+\item Représentatif des conditions in-situ
+\item Chemin de chargement
+\item Rôle de l'existence de l'eau
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Hypothèses fondamentales}
+\begin{itemize}
+	\item Cinématique linéarisée : formulation en petites déformations \\ $$\strain=\frac{1}{2}\pdp{\gradt{u}{x}{}+\gradt{u}{x}{T}}$$
+	$\vct{u}{}{}$ continu en espace/temps
+	\item Milieux saturé d'eau (pression d'eau $u_w$) $\to$ contraintes effectives:
+	\beq{\stress = u_w\ID+\stress[][,]}{effective-stress}
+	$\stress[][,]$ et $u_w$ continus en espace/temps
+\item Pas d'influence de la vitesse de sollicitation:
+\beq{\stress[][,] = \mathcal{F}\pdp{\strain,\chih},\quad \chih \text{ variables statiques d’écrouissage}}{stress-strain-generic}
+\item Conditions isothermes $$T=const.$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Domaines de comportement}
+\bfc{\subfh{strain-stress-traction-ex}{30mm}{}\subfh{elastic-domain}{30mm}{}}{\beq{\strain=\strainel+\strainpl}{strainelpl}}{assumptions}
+\only<1>{
+\begin{itemize}
+	\item $\strainel$ sont réversibles (récupérées après décharge)
+	\item $\strainpl$ sont irréversibles (non récupérées après décharge)
+\end{itemize}
+}
+\only<2>{
+\begin{itemize}
+	\item Comportement Élastique (réversible) : $f<0$
+	\item Écoulement Plastique (irréversible) : $f=0$
+	\item $f$ définie dans l'espace de contrainte mais elle varie avec écoulement plastique (écrouissage)
+\end{itemize}
+}
+\end{frame}
+
+\begin{frame}{Questions ouvertes}
+\begin{itemize}
+	\item Comment définir le limite élastique en fonctions de contraintes $f\pdp{\stress}$?
+	\item Quel repère utiliser?
+\item Comment définir différent mécanisme (volumétrique, cisaillement etc)?
+\item Comment définir l'écrouissage (évolution non-linéaire de $f$) $$\delta f = df\pdp{\stress,\chih}=\gradfstress:\dstress+\gradfhidd:\dchih$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple d'écrouissage cyclique}
+\begin{textblock}{125}(2,10)
+	\begin{figure}
+		\begin{center}
+			\animategraphics[height=65mm,keepaspectratio,autoplay,loop,poster,loop]{1}{deviator_plane_}{0}{3}
+		\end{center}
+	\end{figure}
+	\textbf{Limit strength :} \fbox{$\boldsymbol{\tau_{max} = \frac{C}{\kappa}+\sigma_{yld}}$} 
+\end{textblock}
+\end{frame}

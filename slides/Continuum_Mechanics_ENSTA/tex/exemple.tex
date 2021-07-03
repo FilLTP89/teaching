@@ -1,0 +1,121 @@
+\documentclass{article}
+%
+%	Exemple d'utilisation de la fonte BlackBoard Bold Grecque
+%	"""""""""""""""""""""""""""""""""
+% 	DUREISSEIX David    L.M.T. STRUCTURES et CMAO  le 15 / 07 / 95
+%
+% Avec LaTeX2e uniquement
+% """""""""""""""""""""""
+%
+% Mise en page
+% """"""""""""
+\textwidth 170mm
+\textheight 220mm
+\oddsidemargin 0mm
+\evensidemargin 0mm
+%
+% On charge le package approprie
+% """"""""""""""""""""""""""""""
+\usepackage{bbdd}
+% \usepackage[poor]{bbdd}
+% \usepackage[bold]{bbdd}
+%
+% Document standard
+\title{Du Blackboard Bold Grec}
+\author{DD}
+\begin{document}
+\maketitle
+
+Exemples tests~:
+%
+\newcommand{\testd}[1]%
+  {\tiny{#1}\scriptsize{#1}\footnotesize{#1}\small\normalsize{#1}%
+   \large{#1}\Large{#1}\LARGE{#1}\huge{#1}\Huge{#1}\normalsize{}%
+  }%
+\newcommand{\testdd}[1]%
+  {#1_{#1_{#1_{#1}}}^{#1^{#1^{#1}}}}%
+\newcommand{\testddd}[1]%
+  {\mathrm{#1}\mathbf{#1}\mathsf{#1}\mathit{#1}\mathtt{#1}\mathcal{#1}}%
+%
+
+\testd{$\dsigma$}, \testd{$\dSigma$},
+\testd{$\depsil$}, \testd{$\dEpsil$},
+ 
+\testd{$\dgrm$},   \testd{$\dGrm$},
+\testd{$\dpi$}, 
+
+\testd{$\dkrm$},   \testd{$\dKrm$}
+
+$\testdd{\dsigma}, \testdd{\dSigma}, 
+ \testdd{\depsil}, \testdd{\dEpsil},
+ \testdd{\dgrm},    \testdd{\dGrm},
+ \testdd{\dpi},
+ \testdd{\dkrm},   \testdd{\dKrm}$
+
+$\testddd{\dsigma}, \testddd{\dSigma},
+ \testddd{\depsil}, \testddd{\dEpsil},
+ \testddd{\dgrm},   \testddd{\dGrm},
+ \testddd{\dpi},
+ \testddd{\dkrm},   \testddd{\dKrm}$
+
+et pour Claudie~:
+
+\testd{$\dchi$}, \testd{$\dChi$}
+ 
+\testd{$\dalpha$}, \testd{$\dAlpha$},
+\testd{$\dbeta$}, \testd{$\dBeta$}
+
+$\testdd{\dchi}, \testdd{\dChi},
+ \testdd{\dalpha}, \testdd{\dAlpha},
+ \testdd{\dbeta}, \testdd{\dBeta}$
+
+$\testddd{\dchi}, \testddd{\dChi},
+ \testddd{\dalpha}, \testddd{\dAlpha},
+ \testddd{\dbeta}, \testddd{\dBeta}$
+
+et pour Amar~:
+
+\testd{$\darm$}, \testd{$\dArm$}
+
+$\testdd{\darm}, \testdd{\dArm}$
+
+$\testddd{\darm}, \testddd{\dArm}$
+
+et pour Grognon~:
+
+\testd{$\dOmega$}, \testd{$\dOmega$}
+
+$\testdd{\dOmega}, \testdd{\dOmega}$
+
+$\testddd{\dOmega}, \testddd{\dOmega}$
+
+et pour Philippe~:
+
+\testd{$\dlambda$}, \testd{$\dlambda$}
+
+$\testdd{\dlambda}, \testdd{\dlambda}$
+
+$\testddd{\dlambda}, \testddd{\dlambda}$
+
+\testd{$\dLambda$}, \testd{$\dLambda$}
+
+$\testdd{\dLambda}, \testdd{\dLambda}$
+
+$\testddd{\dLambda}, \testddd{\dLambda}$
+%
+%
+
+Et pour tester le changement de taille en dur :
+\font\aaa = bbdd10 at 11pt
+\font\aba = bbdd10 scaled \magstep0
+\font\aca = bbdd10 scaled \magstephalf
+\font\ada = bbdd10 scaled \magstep1
+\font\aea = bbdd10 scaled \magstep2
+\font\afa = bbdd10 scaled \magstep3
+\font\aga = bbdd10 scaled \magstep4
+\font\aha = bbdd10 scaled \magstep5
+$\hbox{\aaa \char '033}\hbox{\aba \char '033}\hbox{\aca \char '033}
+\hbox{\ada \char '033}\hbox{\aea \char '033}\hbox{\aea \char '033}
+\hbox{\afa \char '033}\hbox{\aga \char '033}$
+%
+\end{document}

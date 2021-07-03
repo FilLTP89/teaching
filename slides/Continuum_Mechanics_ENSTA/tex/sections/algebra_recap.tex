@@ -1,0 +1,48 @@
+\label{sec:algebra_recap}
+\framecard{Algebra Recap}
+\begin{frame}{Some algebra}
+	\begin{block}{Tensor/Vector product}
+		{\scriptsize
+		\begin{itemize}
+			\item Scalar product: $$\av,\bv \in \R^a\quad\quad\pscl{\av}{\bv}=\sum_{m=1}^aa_mb_m$$
+			\item Tensors and tensor product: $$\tens{A}{}{}\in\R^a\to\R^b\quad\quad \tens{A}{}{}=\av\otp\bv, \av\in\R^a, \bv\in\R^b$$
+			\item Tensor application to vector: $$\tens{A}{}{}=\av\otp\bv\in\R^a\to\R^b, \cv\in\R^b\quad\quad \tens{A}{}{}.\cv=\av\pscl{\bv}{\cv}$$
+
+			\item Tensor/Tensor product: 
+			$$\tens{A}{}{}=\av\otp\bv\in\R^a\to\R^b, \tens{B}{}{}=\cv\otp\dv\in\R^b\otp\R^c\quad\quad \tens{A}{}{}.\tens{B}{}{}=\av\otp\dv\pscl{\bv}{\cv}$$
+		\end{itemize}
+	}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{Some algebra (cont'd)}
+	\begin{block}{Tensor/Vector product}
+		{\scriptsize
+		\begin{itemize}
+			\item Vector gradient:
+			$$\av\in\R^a\quad\gradt{a}{x}=\sum_{m=1}^{a}\pard[\av][x_m]\otp\ebv[m]$$
+			\item Vector divergence:
+			$$\av\in\R^a\quad div_x\pdp{\av}=Tr\pdp{\gradt{a}{x}}=\pscl{\gradv{}{x}}{\av}=\sum_{m=1}^a\pard[a_m][x_m]$$
+			\item Tensor divergence:
+			$$\tens{A}{}{}\in\R^a\to\R^b\quad div_x\pdp{\tens{A}{}{}}=\sum_{m=1}^b\pard[\tens{A}{}{}][x_m].\ebv[m]$$
+		\end{itemize}
+	}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{Some algebra (cont'd)}
+	\begin{block}{Tensor/Vector product in cylindrical coordinates}
+		{\scriptsize
+			\begin{itemize}
+				\item Vector gradient:
+				$$\av\in\R^3\quad\gradt{a}{x}=\pard[\av][r]\otp\ir\pthp+\pard[\av][\theta]\otp\frac{\ith}{r}\pthp+\pard[\av][z]\otp\iz$$
+				\item Vector divergence:
+				$$\av\in\R^3\quad div_x\pdp{\av}=Tr\pdp{\gradt{a}{x}}=\pscl{\gradv{}{x}}{\av}=\pscl{\pard[\av][r]}{\ir}+\pscl{\pard[\av][\theta]}{\frac{\ith}{r}}+\pscl{\pard[\av][z]}{\iz}$$
+				\item Tensor divergence:
+				$$\tens{A}{}{}\in\R^3\to\R^3\quad div_x\pdp{\tens{A}{}{}}=\pard[\At][r].\ir\pthp+\pard[\At][\theta].\frac{\ith}{r}+\pard[\At][z].\iz$$
+			\end{itemize}
+		}
+	\end{block}
+\end{frame}

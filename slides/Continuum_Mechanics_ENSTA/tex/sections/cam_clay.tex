@@ -1,0 +1,274 @@
+\subsection{Modèles EP pour les argiles}
+\label{subsec:ep-models-clays}
+\framecard{Modèles EP pour les argiles}
+\begin{frame}{Comportement expérimental}
+\txb{125}{0}{11}{
+	\centering
+\igwf{comportement-typique}{125mm}
+}
+\end{frame}
+
+\begin{frame}{Ingrédients de modélisation}
+\txb{125}{2}{11}{
+\begin{itemize}
+	\item<+-> comportement volumétrique/déviatorique couplés
+	\begin{enumerate}
+		\item<+->  volumétrique
+		\begin{itemize}
+			\item compression isotrope
+			\item compression oedométrique (conditions à repos, in-situ$\to$ consolidation)
+			\item variables intéressées: $\stressm'(=p')$ et $\evol$ (ou index des vides $e$)
+		\end{itemize} 
+		\item<+->  déviatorique
+		\begin{itemize}
+			\item comportement sous charge triaxial/multiaxial
+			\item variables intéressées: $q-p'$ et $\edev,\evol$ ($\edev=\sqrt{\frac{4}{3}J_2\pdp{\strain}}$)
+		\end{itemize}
+	\end{enumerate}
+	\item<+-> rôle de la pression d'eau interstitielle $u_w$:
+	\begin{enumerate}
+		\item<+->  conditions drainée: $\stress=\stress[][']+u_w\ID$ (Terzaghi)
+		\item<+->  conditions non-drainée: $\devol=0$ (sollicitations dynamiques rapides)
+	\end{enumerate}
+\item<+-> relation élastoplastique (conditions triaxiales)
+\beq{
+\triaxdstress=\Deptriax\triaxdstrain \quad  \triaxdstrain=\Ceptriax\triaxdstress 
+}{}
+\end{itemize}
+}
+%\bfc{\igwf{example-oedo}{60mm}}{\cite{Book_Bardet_1997_Experimental_soil_mechanics}}{comport-repere}
+\end{frame}
+
+
+\begin{frame}{\hypertarget{frame:comp-iso}{Compression isotrope}}
+\bfc{\ighf{compression-iso}{35mm}\ighf{example-iso}{40mm}{}}{\cite{Book_Bardet_1997_Experimental_soil_mechanics}}{example-oedo}
+$\evol=3\depsil_1=Tr\pdp{\strain}$ déformation volumique
+\end{frame}
+
+\begin{frame}{Compression odeométrique}
+\ighf{chemin-oedometrique}{35mm}\\
+En élasticité: $\devol=\delta\depsil_1=\delta\depsil_a=\frac{\delta H}{H}=3K\dsigma_1$
+\bfc{\ighf{example-oedo}{30mm}\ighf{compression-e-logp-davis}{30mm}}{\cite{Book_Bardet_1997_Experimental_soil_mechanics}}{example-oedo}
+\end{frame}
+
+\begin{frame}{Comportement volumétrique des argiles}
+\txb{60}{0}{11}{
+	\centering
+	\ighf{p-e-plane}{28mm}
+}
+\txb{60}{60}{11}{
+	\begin{itemize}
+		\item Comportement élastique non linéaire (linéaire en $\log p'$)
+\item $\lambda$ et $\kappa$ dans le plan $\ln p'-e $
+\item  $C_c$ et $C_s$ dans le plan $\log p'-e $ et $\log \dsigma_v'-e$
+\item $ OCR=\frac{\dsigma'_{vc}}{\dsigma'_v}$ ou $OCR=\frac{p'_c}{p'}$ 
+	\end{itemize}
+}
+\txb{123}{2}{40}{
+\begin{itemize}
+\item<+-> $\devol=-\frac{\delta e}{1+e_0}=-\frac{\delta e}{\Gamma}$ {\scriptsize (compression positive)}
+\item<+-> $e_0$ index de vide à repos {\scriptsize(ou conventionnellement, correspondant à $p' $=1 kPa)}
+\item<+-> $\devol = \devol[el]+\devol[pl]$, $\delta e = \delta e^{el}+\delta e^{pl}$
+\item<+-> Consolidation normale [virgin consolidation]: \\ 
+$\to \delta e = -\lambda \delta \pdp{\ln p'}=  -\lambda \frac{\delta p'}{ p'},\quad \nu = \Gamma-\ln\pdp{\frac{p'}{p'_0}} $ {\scriptsize $\pdp{\Gamma=1+e_0}$}
+\item<+-> Décharge élastique [swelling line]: $\delta e ^{el} = -\kappa \frac{\delta p'}{p'},\delta e ^{pl}=-\pdp{\lambda-\kappa}\frac{\delta p'}{p'}$\\
+ \vspace{-3mm}
+$\to\nu=\nu_c-\kappa\ln\pdp{\frac{p'}{p'_c}}$ \\
+$e_c=e_{c0}-\lambda\ln\pdp{\frac{p'_c}{p'_{c0}}}$ ou $\nu_c=\nu_{c0}-\lambda\ln\pdp{\frac{p'_c}{p'_{c0}}}$
+\end{itemize}
+}
+\end{frame}
+
+\begin{frame}{\hypertarget{frame:triax-revo}{Chargement Triaxial}}
+\only<1>{\ighf{example-triax-rev}{65mm}
+	$$\rho=\sqrt{2J_2\pdp{\deviator}}=\sqrt{\frac{2}{3}}q$$}
+\only<2>{
+	\txb{65}{0}{35}{
+	\igwf{options-triax-rev}{65mm}
+}
+\txb{60}{65}{35}{
+	\begin{itemize}
+		\item compression triaxiale: $q>0, \dsigma_a>\dsigma_r$
+		\item extension triaxiale: $q<0, \dsigma_a<\dsigma_r$
+	\end{itemize}
+}
+\txb{125}{2}{11}{
+	Comportement déviatorique dépende de:
+	\begin{itemize}
+		\item la consolidation (isotrope ou oedometrique) $\to$ argiles
+		\item densité $\to$ sables
+	\end{itemize}
+}
+}
+\end{frame}
+
+\begin{frame}{Chargement triaxial}
+\txb{125}{0}{5}{
+\bfc{\subfw{clays-NC}{60mm}{}
+\subfw{loose-sands-triax}{60mm}{}
+}{ Compression triaxiale monotone : (a) argiles normalement consolidées; (b) sables lâches (\cite{Ziani_Biarez_1990} d'après Lopez-Caballero)}{triax-loose}
+}
+\end{frame}
+
+\begin{frame}{Ligne d'état critique}
+\bfc{\ighf{normal-consolidation-line-3d}{65mm}}{Ligne d'état critique dans l'espace $q-p'-e$}{normal-consolidation-line-3d}
+\end{frame}
+
+\begin{frame}{Modèle de Mohr Coulomb}
+
+	\txb{58}{2}{33}{
+		\bfc{\igwf{coulomb}{58mm}}{\cite{Han_et_al_2006}}{coulomb}
+	}
+	\txb{100}{0}{10}{
+		\beq{f\pdp{\stress[][']}=\frac{\vert\dsigma_I-\dsigma_{III}\vert}{2}-\frac{\dsigma_I+\dsigma_{III}}{2}\sin\phi'-c'\cos\phi<0}{coulomb}
+\beq{g\pdp{\stress[][']}=\vert\dsigma_I-\dsigma_{III}\vert-\pdp{\dsigma_I+\dsigma_{III}}\sin\psi<0}{coulomb}
+	\txb{65}{60}{35}{
+		\begin{itemize}
+
+			\item Critère de Coulomb:
+			\begin{itemize}
+				\item $\phi'$ angle de frottement
+				\item $c'$ cohésion drainée  apparente 
+			\end{itemize}
+		\item angle de dilatance $\psi$ ($f\neq g$)
+			\item élastoplasticité parfaite (pas d'écrouissage)
+		\end{itemize}
+	\centering
+	\igwf{perfect-ep}{27mm}
+	}
+}
+\end{frame}
+
+\begin{frame}{Modèle de Mohr-Coulomb}
+	\txb{60}{2}{11}{
+		\igwf{MC-model}{60mm}
+	}
+\txb{65}{60}{11}{
+\beq{f\pdp{\stress[][']}=\vert q\vert -Mp'-N\leq 0}{MC-failure}
+\bsys[][
+& \dsigma_{I} = \frac{3p'+2q}{3},\dsigma_{III} = \frac{3p'-q}{3}\\
+&M = \frac{6\sin\phi'}{3sgn\pdp{q}-\sin\phi'}\\
+& N = \frac{6c'\cos\phi'}{3sgn\pdp{q}-\sin\phi'}][MC-pq-properties]
+}
+\txb{125}{2}{70}{
+\beq{g\pdp{\stress[][']}=\vert q \vert- M_gp'}{g-MC}
+\beq{M_g=\frac{6\sin\psi}{3sgn\pdp{q}-\sin\psi}}{Mg-MC}
+}
+\end{frame}
+
+
+\begin{frame}{Modèle de Mohr-Coulomb en 3D}
+\txb{123}{2}{22}{
+	
+\bfc{\centering\igwf{mohr-coulomb-3d}{40mm}}{\cite{Panteghini_Lagioia_2014}}{mohr-coulomb-3d}
+}
+\txb{123}{2}{11}{
+	\beq{f\pdp{\stress[][']}\frac{\vert q\vert}{3} \pdp{\sqrt{3}\cos\theta-\sin\theta\sin\phi'}-p'\sin\phi'-2c'\cos\phi'\leq 0}{MC-3D}
+}
+\end{frame}
+
+\begin{frame}{Rôle de la dilatance}
+\txb{123}{2}{7}{
+	\only<1>{
+	\bfc{\igwf{dilatancy-concept}{90mm}}{Essaie de cisaillement direct. (a) Courbes $\tau-u$; (b) Courbes $v-u$; (c) mécanisme d'inter-locking}{dilatancy-concept}
+}
+	\only<2>{
+	\bfc{\subfw{dilatancy-curves-type}{65mm}{}	\\ \subfw{dilatancy-angles-mohr}{65mm}{}
+}{Essaie de cisaillement direct: (a) Courbes typiques; (b) loi d'écoulement associée ($\psi=\phi'$) et non-associé ($\psi=\neq\phi'$)}{dilatancy}
+}
+}
+\end{frame}
+
+\begin{frame}{Comportement volumique}
+\txb{83}{2}{11}{
+Le modèle de Mohr-Coulomb est trop simple:\\
+	\begin{itemize}
+		\item<+-> Conditions drainées $\to$ comportement volumique:
+		\begin{enumerate}
+			\item phase élastique : $\dpeff\uparrow \devolel\uparrow$
+			\item phase élastoplastique dépende du $OCR$
+			\begin{itemize}
+				\item contraction (NC ou  $OCR<4$)
+				\item dilatance ( $OCR>4$): mesurée comme $\frac{\devolpl}{\dedevpl}$
+			\end{itemize}
+		\end{enumerate}
+	
+		\item<+-> Conditions non-drainées $\devol=0$:
+		\begin{enumerate}
+			\item phase élastique : 
+			\begin{itemize}
+				\item 	$\devol=\devolel=0=\Celpp\dpeff \pdp{\Celpq=0} \to \delta p=\duw\uparrow $
+			\end{itemize}
+			\item phase élastoplastique : 
+			\begin{itemize}
+				\item $OCR<4\to \duw>0$
+				\item $OCR>4\to \duw >0 $ et $\duw<0$
+				\item $\dpeff = \Ceppp \cancelto{0}{\devol}+\Ceppq\dedev=\delta p+\duw$
+				\item $\dq = \Cepqp \cancelto{0}{\devol}+\Cepqq\dedev$
+			\end{itemize}
+			\end{enumerate}
+	\end{itemize}
+}
+\txb{40}{85}{20}{
+	\igwf{normal-consolidation-line-3d}{40mm}
+	%\igwf{cap-model}{40mm}
+}
+\end{frame}
+
+\begin{frame}{Compression isotrope}
+	\txb{125}{2}{11}{
+	\begin{itemize}
+		\item Comportement élastique : \beq{\frac{\dpeff}{p '}=\frac{1+e}{\kappa}\devolel=\frac{\nu}{\kappa}\devolel}{dp-devolel-iso}
+		\item Comportement élastoplastique : \beq{\frac{\dpeff}{p '}=\frac{1+e}{\lambda-\kappa}\devolpl=\frac{\nu}{\lambda-\kappa}\devolpl}{dp-devolpl-iso}
+	\end{itemize}
+}
+
+\txb{40}{85}{50}{
+	\igwf{normal-consolidation-line-3d}{40mm}
+	%\igwf{cap-model}{40mm}
+}
+\end{frame}
+
+\begin{frame}{Rôle de la dilatance}
+\txb{125}{2}{11}{
+	Incrément de travail élastoplastique (constante le long l'essai): \beq{\delta W^{ep}=\stress[][']:\dstrainpl=p'\devolpl+q\dedevpl}{dWep}
+	À l'état critique en compression (argile normalement consolidée):
+	\bsys[][
+	& \devol\approx\devolpl=0, \quad \dq=M\dpeff\\
+	& \delta W^{ep} = M p' \dedevpl=p'\devolpl+q\dedevpl
+	][CS-conditions]
+}
+\txb{75}{0}{55}{
+	\bsys[\frac{\devolpl}{\dedevpl}\equiv][
+	& M-\frac{q}{p'} > 0 & \text{compression}\\
+	& M-\frac{q}{p'} = 0 & \text{CS}\\
+	& M-\frac{q}{p'} < 0 & \text{dilatance}
+	][conditions-dilatancy-CS]
+}
+\txb{40}{85}{50}{
+	\igwf{normal-consolidation-line-3d}{40mm}
+	%\igwf{cap-model}{40mm}
+}
+\end{frame}
+
+\begin{frame}{Cam-Clay (CCM) et version modifiée(MCCM)}
+\txb{125}{2}{11}{
+\begin{itemize}
+	\item Fonction de charge: 
+	\bsys[f\pdp{\stress}\equiv][
+	& q+Mp'\ln \pdp{\frac{p'}{p'_c}}\leq 0 & \text{CCM}\\
+	& \frac{q^2}{p'^2}+M ^2\pdp{1-\frac{p'_c}{p'}}\leq 0 & \text{MCCM}
+	][CCM-failure]
+\end{itemize}
+}
+\txb{50}{0}{50}{
+\igwf{CCM-failure}{50mm}
+}
+\txb{75}{50}{55}{
+$p'_c$ : pression de pré-consolidation 
+\begin{itemize}
+	\item[$\to$] contrôle la taille de la surface 
+	\item[$\to$] paramètre d'écrouissage (voir \Cref{eq:dp-devolpl-iso}) \beq{p'_c = p'_{c0}\exp\pdp{\frac{\nu}{\lambda-\kappa}\evolpl}}{pc-evol}
+\end{itemize}
+}
+\end{frame}

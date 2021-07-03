@@ -1,0 +1,220 @@
+\subsection{Linear Elasticity}
+\label{subsec:elasticity}
+\framecard{Linear Elasticity}
+%\begin{frame}{Comportement typique des sols}
+%\txb{123}{2}{9}{
+%\centering
+%\bfc{\subfw{triaxial-sample}{15mm}{}\subfh{elastic-modula-ep}{35mm}{}\subfh{ep-example}{35mm}{}
+%}{Chargement triaxiale et évolution du déviateur $q$ en fonction de la déformation axiale $\depsil_1$. Comportement élasto-plastique (b) et élasto-plastique parfait.}{elastic-modula}
+%}
+%\txb{125}{0}{70}{
+%\begin{itemize}
+%	\item $E_i$ : module de Young \textit{initial} 
+%	\item $E_t$ : module de Young \textit{tangent} 
+%	\item $E_s$ : module de Young \textit{sécant} 
+%\end{itemize}
+%}
+%\end{frame}
+
+
+\begin{frame}{Elasticity theory}
+\txb{123}{2}{11}{
+	$\stress\pxtp=\mathcal{F}\pdp{\strainel\pxtp}$
+	\begin{itemize}
+		\item<only@2> Linearity $\to g\pdp{\alpha\strainel[1]+\beta\strainel[2]}=\alpha\mathcal{F}\pdp{\strainel[1]}+\beta\mathcal{F}\pdp{\strainel[2]}$: 
+		\begin{itemize}
+			\item Stiffness: \beq{\stress\pxtp=\Del\pdp{\xv} : \strainel\pxtp}{el-stiff-del}
+			\item Compliance: \beq{ \strainel=\Cel\pdp{\xv}:\stress\pxtp}{el-comp-cel}
+		\end{itemize}
+	$\tensf{A}{}{}$: 4$^{th}$-order tensor (real symmetric)\\
+	$\tensf{A}{}{}=\tens{A}{l}{}\otimes\tens{A}{r}{},\quad \tensf{A}{}{}:\tens{B}{}{}=\tens{A}{l}{}Tr\pdp{\tens{A}{r}{T}\tens{B}{}{}}$
+		\item<only@3> Isotropic $\pbp{\IDD,\ID\otimes\ID}$:
+		\begin{itemize}
+			\item Stiffness : \beq{\stress\pxtp=\lambda\pdp{\xv}Tr\pdp{\strainel\pxtp}\ID+2\mu\pdp{\xv} \strainel\pxtp }{el-stiff}
+			\beq{\Del\pxp=\lambda\pxp\ID\otimes\ID+2\mu\pxp \IDD }{Del_tens}
+			\item Compliance: \beq{\strainel\pxtp=\frac{1+\nu\pdp{\xv}}{E\pdp{\xv}}Tr\pdp{\stress\pxtp}\ID-\frac{\nu\pdp{\xv}}{E\pdp{\xv}} \stress\pxtp }{el-comp}
+			\beq{\Cel\pxp=\frac{1+\nu\pdp{\xv}}{E\pdp{\xv}}\ID\otimes\ID-\frac{\nu\pdp{\xv}}{E\pdp{\xv}}\IDD}{Cel_tens}
+		\end{itemize}
+	$\IDD=\sum_{i=1}^3\ebv[i]\otimes\ebv[i]\otimes\ebv[i]\otimes\ebv[i]$
+	
+		\item<only@4>Spherical and deviatoric decomposition:
+		\begin{itemize}
+				\item Spherical component (pression) $\stressm$: \beq{\stressm\pxtp=\frac{Tr\pdp{\stress}}{3}=\frac{\pdp{3\lambda\pxp+2\mu\pxp}}{3}Tr\pdp{\strainel\pxtp}=K\pxp\evolel\pxtp}{el-stiff-sigmam}
+				\item Deviatoric component $\deviator$:
+				\beq{\deviator\pxtp=\stress-\stressm\ID=2\mu\pdp{\xv} \strainel-\frac{2}{3}\mu\pxp\evolel\pxtp=2\mu\pxp\eel\pxtp }{el-stiff-dev}
+		\end{itemize}
+Direct relationship spherical/deviatoric\\
+		$\evolel$: volumetric strain\\
+			$\eel$: deviatoric strains	\\
+			$\ebar=\sqrt{\frac{4}{3}J_2\pdp{\strain}}$: equivalent deviatoric strain
+		\item<only@5> Homogeneity:
+		\beq{\Del\pdp{\xv}=\Del,\quad\Cel\pdp{\xv}=\Cel}{homo-el}
+		\item<only@5>  $\pdp{\lambda,\mu}$: Lam\'e parameters (stiffness)
+		\item<only@5>  $\pdp{E,\nu}$ : Young's modulus and Poisson's coefficient (compliance)
+		\item<only@5>  $E>0, \mu>0,\quad 3\lambda+2\mu>0,\quad -1<\nu<0.5$
+		\item[]<only@5> \beq{\lambda=\frac{\nu E}{\pdp{1+\nu}\pdp{1-2\nu}},\quad \mu=\frac{E}{2\pdp{1+\nu}}}{}
+	\end{itemize}
+}
+\only<6>{
+\bfc{\ighf{hom-elastic-matrices}{65mm}}{Elastic tensors with $\pdp{E,\nu}$.}{hom-elastic-matrices}
+}
+\end{frame}
+%
+%\begin{frame}{Thermodynamics approach}
+%	\txb{123}{2}{11}{
+%	Helmholtz free energy \beq{\Psi = \UInt-T Q}{Helmholtz-fe}$\to \dot{\Psi}=\dot{\UInt}-S dT$ and for isothermal conditions  $\to \dot{\Psi}=\dot{\UInt}$\\
+%\only<2>{
+%	Exploiting PPT and VPP :
+%	\beq{\dot{\UInt}=\PExt-\PKin+\dot{Q}=-\PInt+\dot{Q}}{uint-isoth}
+%	Adiabatic conditions $\dot{Q}=0$:
+%	\beq{\dot{\UInt}=\dot{\Psi}=-\PInt\pdp{\vV}=\int_{\Omega_t}\stress\pxtp:\straindot\pxtp dv_t}{uint-isoth}
+%	In isothermal conditions, free-energy corresponds to strain energy: \\
+%	$\dot{\UInt }= \int_{\Omega_t}\rho \dot{u} dv_t \to \rho \dot{u}\pxtp = \rho \dot{\psi}\pxtp$
+%}
+%}
+%\end{frame}
+%
+%\begin{frame}{Stiffness matrix}
+%
+%	\txb{30}{0}{11}{
+%		\igwf{free-energy}{30mm}
+%	}
+%	\txb{95}{30}{11}{
+%		$\rho \psi\pxtp$ integral of curve $\stress\pxtp=\mathcal{F}\pdp{\strain\pxtp}$
+%		\\ 
+%		$\to\rho\psi\pxtp = \rho \psi_0+\int_{t_0}^{t_0+T}\stress\pxtp:\straindot\pxtp dt = \int_{\strain\pdp{t_0}}^{\strain\pdp{t_0+T}}\stress\pxtp:\dstrain\pxtp$
+%		
+%	}
+%\only<2>{
+%\txb{125}{0}{47}{	
+%	
+%	\beq{\stress\pxtp = \sum_{i,j=1}^3\frac{\partial\pdp{\rho\psi}}{\partial\depsil_{ij}} \ebv[i]\otimes\ebv[j]=\hessian[\depsil]\pdp{\rho\psi} \text{Hessian}}{stress-grad-psi}
+%	
+%	\beq{\Del\pxtp = \sum_{k,l=1}^3\frac{\partial\stress}{\partial\depsil_{kl}} \otimes \ebv[k]\otimes\ebv[l]=\sum_{i,j,k,l=1}^3\frac{\partial\pdp{\rho\psi}}{\partial\depsil_{ij}\depsil_{kl}}\ebv[i]\otimes\ebv[j]\otimes \ebv[k]\otimes\ebv[l]}{stress-grad-psi}
+%	
+%}
+%}
+%\end{frame}
+%
+%\begin{frame}{Stiffness matrix}
+%
+%	\txb{123}{2}{11}{	
+%		Free-Energy becomes:
+%			\beq{\rho\psi=\frac{E}{\pdp{1-2\nu}\pdp{1+\nu}}\pdp{ \pdp{1-2\nu}Tr\pdp{\strain[][2]} +\nu Tr{\strain}^2}}{en-deformation}
+%	\beq{
+%	\begin{split}
+%		& \rho\psi = \frac{\stressm\evol+2\mu \edv:\edv}{2},\quad \rho\delta\psi =\stressm\delta\evol+\deviator:\dedv\\
+%		& \rho\psi=\frac{1}{2}K\evol[2]+\frac{3\mu}{2}\ebar[][2],\quad \rho\delta\psi=K\evol\delta\evol+3\mu \ebar\delta\ebar
+%	\end{split}
+%}{psi-p-dev}
+%
+%	\beq{
+%	\begin{split}
+%		& K =\frac{\delta\stressm}{\devol}= \rho \frac{\partial^2\psi}{\partial\evol[2]}\\
+%		& 3\mu =\frac{\delta q}{\delta\ebar}= \rho \frac{\partial^2\psi}{\partial\ebar[][2]}
+%	\end{split}
+%}{K-G-psi}
+%
+%}
+%\end{frame}
+%
+%\begin{frame}{Summary}
+%\centering
+%\bfc{\igwf{wood-elasticity-modules}{110mm}}{Adapted from \cite{Book_diPrisco_Wood_Mechanical_Behaviour_Soil_Cyclic}}{wood-elasticity-modules}
+%\end{frame}
+%
+%\begin{frame}{Anisotropic Linear Elasticity}
+%	\igwf{elast-aniso}{110mm}
+%\end{frame}
+%
+%\begin{frame}{Non-Linear Elasticity}
+%\only<3>{
+%	\igwf{ramberg-osgood}{110mm}
+%}
+%\only<1>{
+%\txb{40}{0}{11}{
+%	\igwf{el-nlin}{35mm}\\
+%}
+%\txb{85}{40}{11}{
+%$\stress=\Del\pdp{\stress}:\strain\to$ elastic moduli depend on strain but no residual strain (fully reversible).
+%\begin{itemize}
+%	\item $K=K_{ref}\pdp{\frac{\stressm}{\dsigma{m,ef}}},\mu=\mu_{ref}\pdp{\frac{\stressm}{\dsigma_{m,ref}}},\nu=\text{const.}$
+%	\item not coming from a potential
+%	\item problems when number of curves is too high
+%\end{itemize}
+%Hyperbolic model \cite{Duncan_Chang_1970}:
+%\beq{
+%\begin{split}
+%& q = \frac{\depsil_1}{\frac{1}{E_i}+\frac{\depsil_1}{q_{ult}}}\\
+%& q_f = R_fq_{ult}=\frac{2c\cos\phi+2\dsigma_3\sin\phi}{1-\sin\phi}
+%\end{split}
+%}{duncan-cheng}
+%$q=\dsigma_1-\dsigma_3$\\
+%$R_f$: ratio admissible deviatoric stress/Coulomb strength
+%}
+%}
+%
+%
+%\only<2>{
+%	\txb{40}{0}{11}{
+%		\igwf{el-nlin}{35mm}\\
+%	}
+%	\txb{85}{40}{11}{
+%		Incremental linear elasticity:
+%		\begin{itemize}
+%				\item $E_i=k\pdp{\frac{\dsigma_3}{p_a}}^n$
+%			\item $K_i=k_b\pdp{\frac{\dsigma_3}{p_a}}^m$
+%			\item $E_t=E_i\pdp{1-R_f\frac{\pdp{1-\sin\phi}q}{2c\cos\phi+2\dsigma_3\sin\phi}}^2$
+%		\end{itemize}
+%}}
+%\end{frame}
+
+
+%THE END
+
+
+%\begin{frame}{Approche thermodynamique}
+%\txb{123}{2}{11}{
+%	Énergie libre de Gibbs \beq{\GGibbs = \Hent  -T Q}{Gibbs-fe}\\
+%	Enthalpie $\Hent=\UInt-\int_{\Omega_t}$
+%	$\to \dot{\Psi}=\dot{\UInt}-S dT$ et dans le cas isotherme  $\to \dot{\Psi}=\dot{\UInt}$\\
+%	\only<2>{
+%		En utilisant le PPT (\Cref{eq:tdp1}) et le PPV (\Cref{eq:VPP}), on obtient:
+%		\beq{\dot{\UInt}=\PExt-\PKin+\dot{Q}=-\PInt+\dot{Q}}{uint-isoth}
+%		Dans le cas isotherme (adiabatique) $\dot{Q}=0$:
+%		\beq{\dot{\UInt}=\dot{\Psi}=-\PInt\pdp{\vv}=\int_{\Omega_t}\stress\pxtp:\straindot\pxtp dv_t}{uint-isoth}
+%		En conditions isothermes, l’énergie libre est uniquement une énérgie de déformation: \\
+%		$\UInt = \int_{\Omega_t}\rho u dv_t \to \rho u\pxtp = \rho \psi\pxtp$
+%	}
+%}
+%\end{frame}
+%
+%
+%\begin{frame}{Matrices de souplesse (cond. isothermes)}
+%
+%\txb{30}{0}{11}{
+%	\igwf{compl-energy}{30mm}
+%}
+%\txb{95}{30}{11}{
+%	$\rho e_c\pxtp$ intégral de la courbe $\strain\pxtp=\mathcal{F}\pdp{\strain\pxtp}$
+%	\\ 
+%	$\to\rho\psi\pxtp = \rho \psi_0+\int_{t_0}^{t_0+T}\stress\pxtp:\straindot\pxtp dt = \int_{t_0}^{t_0+T}\stress\pxtp:\dstrain\pxtp$
+%	
+%}
+%\only<2>{
+%	\txb{125}{0}{47}{	
+%		
+%		\beq{\stress\pxtp = \sum_{i=1}^3\sum_{j=1}^3\frac{\partial\pdp{\rho\psi}}{\partial\depsil_{ij}} \ebv[i]\otimes\ebv[j]=\hessian[\depsil]\pdp{\rho\psi} \text{Hessian}}{stress-grad-psi}
+%		
+%		\beq{\Del\pxtp = \sum_{k=1}^3\sum_{l=1}^3\frac{\partial\stress}{\partial\depsil_{kl}} \otimes \ebv[k]\otimes\ebv[l]=\sum_{k=1}^3\sum_{l=1}^3\frac{\partial\pdp{\rho\psi}}{\partial\depsil_{ij}\depsil_{kl}}\ebv[i]\otimes\ebv[j]\otimes \ebv[k]\otimes\ebv[l]}{stress-grad-psi}
+%	}
+%}
+%%\txb{30}{0}{47}{
+%%	\igwf{free-energy}{30mm}
+%%}
+%%\txb{95}{30}{53}{
+%%	$\UInt = \int_{\Omega_t}\rho u dv_t \to \rho u\pxtp = \rho \psi\pxtp$ intégral de la courbe $\stress\pxtp=\mathcal{F}\pdp{\strain\pxtp}$
+%%	\\ 
+%%	$\to\rho\psi\pxtp = \rho \psi_0+\int_{t_0}^{t_0+T}\stress\pxtp:\straindot\pxtp dt = \int_{t_0}^{t_0+T}\stress\pxtp:\dstrain\pxtp$
+%%}
+%\end{frame}

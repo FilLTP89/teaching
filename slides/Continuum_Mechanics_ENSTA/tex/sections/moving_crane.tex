@@ -1,0 +1,57 @@
+\subsection{6.2 Moving Crane}
+\label{sec:moving_crane}
+\framecard{6.2 Moving Crane}
+\begin{frame}{Set up}
+	\bfc{\igwf{configuration_moving_crane.eps}{75mm}}{Set up [Credits: G. Puel]}{}
+\end{frame}
+
+
+% Set up
+\begin{frame}{Set up}
+	\txb{120}{3}{12}{
+		\begin{block}{Static case }
+{			\scriptsize
+\begin{itemize}
+	\item Support: $\Omega_0 (s=0)$
+	\item Crane: $\Omega$\\ axis: $\vct{e}{}{},\pscl{\ebv}{\iz}=\cos\alpha, \pscl{\ebv}{\iy}=\sin\alpha, \alpha\in\psp{0,\frac{\pi}{2}}$\\ geometry: $s\in\left]0,L\right[$, cross-section area $A$,\\ cross-section geometric moment of inertia $\tens{J}{}{}= I \tens{I}{}{}+ \left(J - I\right) \vct{e}{}{}\otimes\vct{e}{}{}$ \\ material properties: $E$, $\mu$\\
+	distributed load: $\fv[L]=\zerov$
+	\item Rigid horizontal plate $\Omega_p$:\\
+	clamping in $\xv[p] (s=L)$, center of mass $\xv[C_m]=\xv[p]+l_x\ix+l_y\iy+l_z\iz$
+\end{itemize}              }                                                                              \end{block}
+\begin{center}
+	\includegraphics[width=40mm]{moving_crane_1.eps}
+\end{center}
+
+	}
+\end{frame}
+
+
+\begin{frame}{Plate balance}
+	\txb{120}{3}{12}{
+		\begin{exampleblock}{Question 1: Balance of the horizontal plate $\Omega_p$}
+			\begin{itemize}
+				\item $-\Rv[L]-m g\iz=\zerov \Rightarrow \Rv[L]=\Rv(L)=-mg\iz$
+				\item $-\Mv[L]+\pdp{\xv[C_m]-\xv[p]}\wedge(-m g\iz)=\zerov \Rightarrow \Mv[L]=\Mv(L)=mg(l_x\iy-l_y\ix)$
+		\end{itemize}                                                                                     \end{exampleblock}
+	\begin{center}
+	\includegraphics[width=40mm]{moving_crane_2.eps}
+	\end{center}
+
+	}
+
+\end{frame}
+
+
+\begin{frame}{Crane balance}
+	\txb{120}{3}{12}{
+		\begin{exampleblock}{Questions 2/3: Balance of the moving crane $\Omega$}
+			\begin{itemize}
+				\item $-\Rv(s)+\Rv[L]=\zerov \Rightarrow \Rv(s)=\Rv[L]=\Rv(L)=-mg\iz$
+				\item $-\Mv(s)+\Mv[L]+\pdp{\xv[p]-\xv}\wedge\Rv[L]=\zerov \Rightarrow -\Mv(s)+\Mv[L]+\pdp{L-s}\ebv\wedge(-mg\iz)$\\
+				$\Mv(s)=mg(l_x\iy-l_y\ix)+mg\sin\alpha(s-L)\ix$
+		\end{itemize}                                                                                     \end{exampleblock}
+		\begin{center}
+			\includegraphics[width=40mm]{moving_crane_3.eps}
+		\end{center}
+	}
+\end{frame}

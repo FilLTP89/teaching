@@ -1,0 +1,127 @@
+% Welcome! This is the unofficial Umeå University template.
+% IMPORTANT: 
+% This work, "Umeå University Unofficial Beamer Theme", is a derivative
+% of "University of Udine Unofficial Beamer Theme" by Marco Basaldella, University of Udine, CC 4.0 BY. 
+% (https://www.overleaf.com/latex/templates/university-of-udine-unofficial-beamer-theme/zndkgxrjsdzt) 
+% "Umeå University Unofficial Beamer Theme" is licensed under CC 4.0 by Jesper Erixon.
+
+% See README.md for more full information about this template .
+
+% Note that [usenames,dvipsnames] is MANDATORY due to compatibility
+% issues between tikz and xcolor packages.
+
+\documentclass[usenames,dvipsnames]{beamer}
+%%%%
+\newcommand{\mainfolder}{.}
+\newcommand{\writeup}{.}
+\newcommand{\basics}{./basics}
+\newcommand{\epstopdfimages}{./eps_to_pdf/}
+\newcommand{\presentations}{\writeup}
+\newcommand{\runfolder}{\presentations}
+\newcommand{\runsections}{\runfolder/sections}
+\newcommand{\images}{\runfolder/graphics/}
+\input{\basics/commands}
+\graphicspath{{\images}}
+%%%%
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{./basics/umu/beamerthemeumu}
+
+%%% Bibliography
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\addbibresource{\basics/MyCollection.bib}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+% Author names in publication list are consistent 
+% i.e. name1 surname1, name2 surname2
+% See https://tex.stackexchange.com/questions/106914/biblatex-does-not-reverse-the-first-and-last-names-of-the-second-author
+\DeclareNameAlias{author}{first-last}
+
+%%% Suppress biblatex annoying warning
+\usepackage{silence}
+\WarningFilter{biblatex}{Patching footnotes failed}
+
+%%% Some useful commands
+% pdf-friendly newline in links
+\newcommand{\pdfnewline}{\texorpdfstring{\newline}{ }} 
+% Fill the vertical space in a slide (to put text at the bottom)
+\newcommand{\framefill}{\vskip0pt plus 1filll}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% YOUR PRESENTATION BELOW %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[CentraleSupélec]{Description du Milieu Continu}
+%\date[\today]{\small\today}
+\author[Filippo Gatti]{
+  Filippo Gatti, Ph.D.
+  \pdfnewline
+  \texttt{filippo.gatti@centralesupelec.fr}
+  \pdfnewline  Lab.MSSMat UMR CNRS 8579
+  \pdfnewline CentraleSupélec
+}
+\institute{Mechanics}
+\usepackage{listings}
+\usepackage{color}
+ \usepackage{relsize}
+% Custom colors
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+		language=Python,
+		basicstyle=\ttm,
+		otherkeywords={self},             % Add keywords here
+		keywordstyle=\ttb\color{deepblue},
+		emph={MyClass,__init__,__class__,__name__},          % Custom highlig´hting
+		emphstyle=\ttb\color{deepred},    % Custom highlighting style
+		stringstyle=\color{deepgreen},
+		frame=tb,                         % Any extra options here
+		showstringspaces=false,
+		commentstyle=\color{gray},
+		tabsize=4
+}}
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+	\pythonstyle
+	\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+		\pythonstyle
+		\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+\usepackage{minibox}
+
+\setbeamertemplate{section in toc}[square unnumbered]
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+% \section{Algebra Recap}
+% \input{\runsections/algebra_recap}
+
+\section{Recap Lecture 1}
+\input{\runsections/milieu_continu}
+
+\end{document}

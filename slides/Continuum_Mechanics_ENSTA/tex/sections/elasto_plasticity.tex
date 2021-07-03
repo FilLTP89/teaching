@@ -1,0 +1,111 @@
+\subsection{Élastoplasticité}
+\label{subsec:elasto-plasticity}
+\framecard{Élastoplasticité}
+\begin{frame}{Comportement post-élastique}
+	\begin{itemize}
+		\item le sol entre en rupture si soumit à une déformation déviatorique relevant ou à traction 
+		\item normalement la réponse du sol est non linéaire et irréversible 
+		\item le sol peut avoir des déformations volumiques importants quand les
+		déformations déviatoriques augmentent
+		\item le comportement du sol est dépendant de son histoire
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Problème élastoplastique}
+\txb{125}{0}{11}{
+	\begin{itemize}
+		\item Ingrédients pour décrire l'évolution élastoplastique?
+	\begin{enumerate}
+		\item<only@2> Seuil de plasticité
+		\item<only@3>  Fonction de charge (critère de rupture)
+		\item<only@4-5> écrouissage (évolution du seuil de plasticité)
+		\item<only@6> écoulement plastique
+		\item<only@7> problème d'optimisation
+		\item<only@8> module d'écrouissage et multiplicateur plastique
+	\end{enumerate}
+
+\end{itemize}
+}
+\txb{123}{2}{20}{
+	
+\only<2>{
+\bsys[][
+&f\pscp< 0 & \text{elasticity}\\
+&f\pscp= 0 & \text{plasticity}
+][plastic-threshold]
+\centering
+\igwf{elastic-domain}{80mm}
+}
+
+\only<3>{
+	\bsys[][
+	&f\pscp-\sigma_{yld}\leq 0 & \text{limite élastique}\\
+	&f_{ult}\pscp-\sigma_{ult}\leq 0, \quad(\text{for} \norm{\strainpl}\to\infty) & \text{surface limite}
+	][plastic-loci]
+	\centering
+\igwf{deviator_plane_2}{80mm}
+}
+
+\only<4>{
+	\vspace{2mm}
+	Évolution continue de $f$ en temps : $f\pdp{t+\delta t}\approx f\pdp{t}+\delta f$
+	\bsys[\text{si  } f\pdp{t} \equiv 0:][
+& \delta f < 0 \to f\pdp{t+\delta t} < 0& \text{déchargement élastique}\\
+& \delta f = 0 \to f\pdp{t+\delta t} = 0& \text{chargement plastique}
+][cond_consistency_ep]
+\vspace{-3mm}
+\begin{enumerate}
+	\item Hypothèse 0: $\dstrainpl=\tens{0}{}{} \to \dstress[][trial]=\Del : \dstrain$\\
+	\item Vérifier la valeur de $f\pdp{\stress+\dstress[][trial];\chih}\leq 0$ 
+	\item si $f\pdp{\stress+\dstress[][trial];\chih}> 0\to$ correction: $f\pdp{\stress+\dstress[][];\chih+\dchih}=0$
+\end{enumerate}
+\centering
+\ighf{nl_int_1step}{22mm}
+\ighf{nl_int_1step_unl}{22mm}
+}
+\only<5>{
+	\bsys[][
+& f\pdp{t}=0 \text{ and } \gradfstress : \dstress[][trial] > 0 & \text{écrouissage positif}\\
+& f\pdp{t}=0 \text{ and } \gradfstress : \dstress[][trial] = 0 & \text{plasticité parfaite ($f=f_{ult}$)}\\
+& f\pdp{t+\delta t}=0 \text{ and } \gradfstress : \dstress[][trial] < 0 & \text{écrouissage négatif}\\
+& f\pdp{t+\delta t}<0 \text{ and } \gradfstress : \dstress[][trial] < 0 & \text{écrouissage négatif}
+][hardening]
+\centering
+\ighf{hardening}{32mm}
+\ighf{hardening-vs-perfect}{32mm}
+}
+
+\only<6>{
+\bsys[][
+& \dstrainpl=\dplm.\gradgstress & \text{non-associée}\\
+& \dstrainpl=\dplm.\gradfstress, & \text{associée} (f=g) 
+][flow-rule]
+\beq{\plm=\int_{0}^{t}\sqrt{\frac{2}{3}\dco{\dstrainpl}}dt=}{plastic_multiplier}
+\centering
+\ighf{flow-rule}{42mm}
+}
+
+\only<7>{
+	\vspace{2mm}
+	Conditions de Karush–Kuhn–Tucker conditions:
+\bsys[\mathcal{K}:][
+&f\pscp\leq 0, \\
+&\plm \geq 0, & \forall f\pscp \in  \mathbb{S} \times \mathbb{K}  \\
+&\dplm f\pscp = 0
+][KKT_consistency]
+$\dplm$ est calculé à partir des conditions de consistance élastoplastique:
+$$\text{if } f= 0, \to \delta f = 0 \to f\pdp{t+\delta t} = 0,\quad \text{chargement plastique}$$\vspace{-5mm}
+%\beq{\delta f = \gradfstress:\underbrace{\Del:\pdp{\dstrain-\dplm\gradgstress}}_{\dstress}+\gradfhidd:\underbrace{\gradchieta}_{\dchih}:\etah}{cond_consistency_1}
+\beqh[\delta f = \gradfstress:\underbrace{\Del:\pdp{\dstrain-\dplm\gradgstress}}_{\dstress}+\gradfhidd:\dchih=0][cc][<7>][ABC]
+}
+\only<8>{
+	\vspace{2mm}
+	Loi d'écoulement des variables statiques d'écrouissage $\chih$ :
+	\beq{\chih=\pbp{\alpha,\beta,\gamma,...,\tens{\alpha}{}{},\tens{\beta}{}{},\tens{\gamma}{}{},...}\to \dchih=\gradchieta:\detah=\dplm\gradchieta:\gradghidd}{grad_hidd_var}
+	$\etah$: variables cinématiques d'écrouissage $\to \detah=\dplm\gradghidd$.\\
+	En résolvant l'\hyperlink{ABC}{\Cref{eq:cc}}, on trouve l'incrément du multiplicateur plastique:
+\beq{\delta f = 0\to \dplm=\frac{\gradfstress:\Del:\dstrain}{\underbrace{\gradfstress:\Del:\gradgstress}_{\mathcal{H}_{c}\text{=module d'ecrouissage critique}} - \underbrace{\gradfhidd:\gradchieta:\gradghidd}_{\mathcal{H}\text{=module d'ecrouissage}}}}{plm_sol}
+}
+}
+\end{frame}

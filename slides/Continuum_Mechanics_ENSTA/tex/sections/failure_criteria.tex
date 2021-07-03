@@ -1,0 +1,117 @@
+\subsection{Failure Criteria}
+\label{subsec:failure-criteria}
+\framecard{Failure Citeria}
+\begin{frame}{Rupture}
+\txb{120}{5}{10}{\vspace{-7mm}\centering
+	\bfc{\subfh{eprouvette-traction-ex}{30mm}{}\subfh{boundary-influence-traction-ex}{30mm}{}\\\subfh{strain-stress-traction-ex1}{30mm}{ductile}\subfh{strain-stress-rupture-ex}{30mm}{fragile}\subfh{fragile-ductile-ex}{30mm}{}}{Credits G. Puel}{failure-intro}
+}
+\end{frame}
+
+\begin{frame}{...at atomistic level}
+\txb{120}{5}{10}{\vspace{-7mm}\centering
+	\bfc{\subfh{dislocation-ex}{30mm}{}\\\subfh{dislocation-ex1}{30mm}{}}{Credits G. Puel}{dislocation}
+}
+\end{frame}
+
+\begin{frame}{Splitting failure}
+\begin{itemize}
+\item Separation of two atomic planes
+\item Driven by normal stress component $\stressnn$ 
+\item Random atomic planes \\ $\to$ orientation that maximizes $\stressnn$
+\beq{f\pdp{\stress}=\max_{\norm{\nv}=1}\stressnn\pxtp-\dsigma_r\leq0}{clivage}
+\item for fragile materials (concrete)
+\end{itemize}
+\bfc{\subfh{clivage}{17.5mm}{}\subfh{brazilian-test}{17.5mm}{}}{Credits G. Puel}{clivage}
+\end{frame}
+
+\begin{frame}{Shear failure}
+\begin{itemize}
+	\item plastic shearing along a certain plane
+	\item induced by shearing stress overruns the threshold (Schmidt's law)
+	$\stressnn$
+\end{itemize}
+\only<1>{
+\begin{enumerate}
+	\item maximum tangent traction component $\to$ Tresca's criterion
+	\beq{
+		\begin{split}
+			& f\pdp{\stress}=\max_{\norm{\nv}=1}\norm{\tauvsigma}\pxtp-\tau_0\leq0\\
+			& \nv=\frac{1}{\sqrt{2}}\pdp{\nv[I]+\nv[III]}
+		\end{split}	
+}{tresca}
+\end{enumerate}
+\bfc{\subfh{tresca}{17.5mm}{}}{Credits G. Puel}{tresca}
+}
+\only<2>{
+	\begin{enumerate}
+		\item Potential energy of elastic distortion $\to$ Von Mises criterion
+		\beq{
+			\begin{split}
+				& f\pdp{\stress}=\dsigma_{eq}-\tau_0\leq0,\quad \dsigma_{eq}=\sqrt{3J_2\pdp{\deviator}}\\
+				& \stress=\dsigma_{ee}\ebv[]\otimes\ebv[]\to\dsigma_{eq}=\dsigma_{ee}\\
+				& \stress=\tau_{em}\ebv[]\otimes_s\mv[]\to\dsigma_{eq}=\sqrt{3}\tau_{em}
+			\end{split}	
+		}{mises}
+	\end{enumerate}
+\bfc{\ighf{tresca-mises-mohr}{17.5mm}{}}{Credits G. Puel}{tresca-mises-mohr}
+}
+\end{frame}
+
+%\begin{frame}{Soil failure criteria}
+%\only<1>{
+%\txb{58}{2}{33}{
+%	\bfc{\igwf{coulomb}{58mm}}{\cite{Han_et_al_2006}}{coulomb}
+%}
+%\txb{100}{0}{13}{
+%\beq{f\pdp{\stress}=\frac{\vert\lambda_I^\dsigma-\lambda_{III}^\dsigma\vert}{2}-\frac{\lambda_I^\dsigma+\lambda_{III}^\dsigma}{2}\sin\phi-c\cos\phi<0}{coulomb}
+%}
+%\txb{65}{60}{30}{
+%\begin{itemize}
+%	\item For granular materials:  positive compression
+%	\item Friction failure: Coulomb's law
+%	\item $\phi$ friction angle
+%	\item $c$ apparent cohesion 
+%\end{itemize}
+%}
+%}
+%\only<2>{
+%\txb{58}{2}{33}{
+%	\bfc{\igwf{coulomb}{58mm}}{\cite{Han_et_al_2006}}{coulomb}
+%}
+%\txb{100}{0}{13}{
+%	\beq{f\pdp{\stress}=\sqrt{J_2\pdp{\stress}}-M\cdot I_1\pdp{\stress}-N\leq0,\quad M=\frac{6\sin\phi}{3-\sin\phi}}{dprager}
+%}
+%\txb{65}{60}{30}{
+%	\begin{itemize}
+%		\item Drucker-Prager's criterion
+%	\end{itemize}
+%}
+%}
+%\only<3>{
+%	\txb{58}{2}{33}{
+%		\bfc{\igwf{criteres-duncan-lade}{58mm}}{\cite{Han_et_al_2006}}{criteres-duncan-lade}
+%	}
+%	\txb{100}{0}{13}{
+%		\beq{f\pdp{\stress}=I_1^3\pdp{\stress}-kI_3\pdp{\stress}}{lade-duncan}
+%	}
+%	\txb{65}{60}{30}{
+%		\begin{itemize}
+%			\item For sands
+%			\item Duncan's criterion
+%		\end{itemize}
+%	}
+%}
+%\end{frame}
+%
+%\begin{frame}{Résumé}
+%\txb{125}{0}{13}{
+%\bfc{\subfh{compare-failure-criteria-3d}{50mm}{}\subfh{compare-failure-criteria-2d}{25mm}{}}{\cite{Book_Nova_2010_Soil_Mechanics}}{compare-failure-criteria}
+%}
+%\end{frame}
+%
+%\begin{frame}{Résumé}
+%\txb{123}{2}{13}{
+%	\centering
+%\bfc{\centering\ighf{compare-failure-criteria-table}{60mm}}{Comparaison entre différent critères de rupture par cisaillement}{compare-failure-criteria-table}
+%}
+%\end{frame}
